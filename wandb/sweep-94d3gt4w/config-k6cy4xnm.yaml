@@ -1,0 +1,6 @@
+wandb_version: 1
+
+beta_d:
+  value: 10000
+beta_z:
+  value: 1

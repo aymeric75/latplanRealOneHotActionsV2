@@ -1,0 +1,4172 @@
+Default float: float32
+{'mode': 'learn', 'type': 'mnist', 'width': 3, 'height': 3, 'num_examples': 5000, 'aeclass': 'CubeSpaceAE_AMA4Conv', 'comment': 'kltune2', 'hash': 'neat-sweep-7CustomDatasetMore'}
+gtgtgt
+gtgtgt
+loaded. picsize: [48, 48]
+(5000, 2, 48, 48, 1)
+normalized shape: (48, 48, 1) (48, 48, 1)
+all_combis_augmented
+[array([0, 1, 1]), array([0, 1, 2]), array([0, 1, 3]), array([0, 1, 4]), array([0, 1, 5]), array([0, 1, 6]), array([0, 1, 7]), array([0, 1, 8]), array([0, 3, 1]), array([0, 3, 2]), array([0, 3, 3]), array([0, 3, 4]), array([0, 3, 5]), array([0, 3, 6]), array([0, 3, 7]), array([0, 3, 8]), array([1, 1, 1]), array([1, 1, 2]), array([1, 1, 3]), array([1, 1, 4]), array([1, 1, 5]), array([1, 1, 6]), array([1, 1, 7]), array([1, 1, 8]), array([1, 2, 1]), array([1, 2, 2]), array([1, 2, 3]), array([1, 2, 4]), array([1, 2, 5]), array([1, 2, 6]), array([1, 2, 7]), array([1, 2, 8]), array([1, 3, 1]), array([1, 3, 2]), array([1, 3, 3]), array([1, 3, 4]), array([1, 3, 5]), array([1, 3, 6]), array([1, 3, 7]), array([1, 3, 8]), array([2, 1, 1]), array([2, 1, 2]), array([2, 1, 3]), array([2, 1, 4]), array([2, 1, 5]), array([2, 1, 6]), array([2, 1, 7]), array([2, 1, 8]), array([2, 2, 1]), array([2, 2, 2]), array([2, 2, 3]), array([2, 2, 4]), array([2, 2, 5]), array([2, 2, 6]), array([2, 2, 7]), array([2, 2, 8]), array([3, 0, 1]), array([3, 0, 2]), array([3, 0, 3]), array([3, 0, 4]), array([3, 0, 5]), array([3, 0, 6]), array([3, 0, 7]), array([3, 0, 8]), array([3, 1, 1]), array([3, 1, 2]), array([3, 1, 3]), array([3, 1, 4]), array([3, 1, 5]), array([3, 1, 6]), array([3, 1, 7]), array([3, 1, 8]), array([3, 3, 1]), array([3, 3, 2]), array([3, 3, 3]), array([3, 3, 4]), array([3, 3, 5]), array([3, 3, 6]), array([3, 3, 7]), array([3, 3, 8]), array([4, 0, 1]), array([4, 0, 2]), array([4, 0, 3]), array([4, 0, 4]), array([4, 0, 5]), array([4, 0, 6]), array([4, 0, 7]), array([4, 0, 8]), array([4, 1, 1]), array([4, 1, 2]), array([4, 1, 3]), array([4, 1, 4]), array([4, 1, 5]), array([4, 1, 6]), array([4, 1, 7]), array([4, 1, 8]), array([4, 2, 1]), array([4, 2, 2]), array([4, 2, 3]), array([4, 2, 4]), array([4, 2, 5]), array([4, 2, 6]), array([4, 2, 7]), array([4, 2, 8]), array([4, 3, 1]), array([4, 3, 2]), array([4, 3, 3]), array([4, 3, 4]), array([4, 3, 5]), array([4, 3, 6]), array([4, 3, 7]), array([4, 3, 8]), array([5, 0, 1]), array([5, 0, 2]), array([5, 0, 3]), array([5, 0, 4]), array([5, 0, 5]), array([5, 0, 6]), array([5, 0, 7]), array([5, 0, 8]), array([5, 1, 1]), array([5, 1, 2]), array([5, 1, 3]), array([5, 1, 4]), array([5, 1, 5]), array([5, 1, 6]), array([5, 1, 7]), array([5, 1, 8]), array([5, 2, 1]), array([5, 2, 2]), array([5, 2, 3]), array([5, 2, 4]), array([5, 2, 5]), array([5, 2, 6]), array([5, 2, 7]), array([5, 2, 8]), array([6, 0, 1]), array([6, 0, 2]), array([6, 0, 3]), array([6, 0, 4]), array([6, 0, 5]), array([6, 0, 6]), array([6, 0, 7]), array([6, 0, 8]), array([6, 3, 1]), array([6, 3, 2]), array([6, 3, 3]), array([6, 3, 4]), array([6, 3, 5]), array([6, 3, 6]), array([6, 3, 7]), array([6, 3, 8]), array([7, 0, 1]), array([7, 0, 2]), array([7, 0, 3]), array([7, 0, 4]), array([7, 0, 5]), array([7, 0, 6]), array([7, 0, 7]), array([7, 0, 8]), array([7, 2, 1]), array([7, 2, 2]), array([7, 2, 3]), array([7, 2, 4]), array([7, 2, 5]), array([7, 2, 6]), array([7, 2, 7]), array([7, 2, 8]), array([7, 3, 1]), array([7, 3, 2]), array([7, 3, 3]), array([7, 3, 4]), array([7, 3, 5]), array([7, 3, 6]), array([7, 3, 7]), array([7, 3, 8]), array([8, 0, 1]), array([8, 0, 2]), array([8, 0, 3]), array([8, 0, 4]), array([8, 0, 5]), array([8, 0, 6]), array([8, 0, 7]), array([8, 0, 8]), array([8, 2, 1]), array([8, 2, 2]), array([8, 2, 3]), array([8, 2, 4]), array([8, 2, 5]), array([8, 2, 6]), array([8, 2, 7]), array([8, 2, 8])]
+all_combis_augmentedlol
+[2 1 2]
+192
+ppppppppppppp
+<module 'latplan.puzzles.puzzle_mnist' from '/workspace/latplanRealOneHotActionsV2/latplan/puzzles/puzzle_mnist.py'>
+custom true
+pres_configs 000
+12000
+[1 0 6 4 2 5 7 3 8]
+[1 6 0 4 2 5 7 3 8]
+pres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configs
+right_pres_configs
+tensor([1, 0, 6, 4, 2, 5, 7, 3, 8])
+torch.Size([12000, 9])
+right_sucs_configs
+tensor([1, 6, 0, 4, 2, 5, 7, 3, 8])
+zero_positions_pres
+tensor(6)
+
+zero_positions_sucs
+tensor(3)
+
+pres_minus_three
+tensor(3)
+pres_plus_one
+tensor(7)
+pres_minus_one
+tensor(5)
+top_moves[600]
+tensor(True)
+right_moves[600]
+tensor(False)
+left_moves[600]
+tensor(False)
+down_moves[600]
+tensor(False)
+ggggg
+tensor(0, dtype=torch.int32)
+theallactions0000000000
+tensor(0, dtype=torch.int32)
+zero_positions_pres
+tensor(1)
+iiiii
+tensor([1, 6, 0, 4, 2, 5, 7, 3, 8])
+tensor(6)
+neighsssss
+kkk
+torch.Size([12000])
+torch.Size([12000])
+theallactions
+tensor([3, 0, 0], dtype=torch.int32)
+pos_and_move size 1
+torch.Size([12000, 2])
+tensor([6, 0])
+pos_and_move size 2
+torch.Size([12000, 2])
+ooo
+192
+24
+actions_one_hot
+tensor([[0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 1, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        ...,
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 0, 0, 0],
+        [0, 0, 0,  ..., 1, 0, 0]])
+torch.Size([12000, 24])
+gtgtgt
+gtgtgt
+actionstrn
+putain
+17
+the f*** action
+(array([4]),)
+[0 3 1]
+loaded. picsize: [48, 48]
+(12000, 2, 48, 48, 1)
+normalized shape: (48, 48, 1) (48, 48, 1)
+actions_transitionsactions_transitions
+<class 'numpy.ndarray'>
+(12000, 24)
+[0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+
+
+<class 'numpy.ndarray'>
+(12000, 2, 48, 48, 1)
+samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/neat-sweep-7CustomDatasetMore
+class precedence list:
+  <class 'latplan.model.ConvolutionalConcreteDetNormalizedLogitAddBidirectionalTransitionAEPlus'>
+  <class 'latplan.mixins.encoder_decoder.StridedConvolutionalMixin'>
+  <class 'latplan.mixins.encoder_decoder.ConvolutionalMixin'>
+  <class 'latplan.model.ConcreteDetNormalizedLogitAddBidirectionalTransitionAEPlus'>
+  <class 'latplan.model.DetActionMixin'>
+  <class 'latplan.model.NormalizedLogitAddBidirectionalMixin'>
+  <class 'latplan.model.NormalizedLogitAddPreconditionMixin'>
+  <class 'latplan.model.NormalizedLogitAddEffectMixin'>
+  <class 'latplan.model.LogitEffectMixin'>
+  <class 'latplan.model.BaseActionMixinAMA4Plus'>
+  <class 'latplan.model.BidirectionalMixin'>
+  <class 'latplan.model.PreconditionMixin'>
+  <class 'latplan.model.EffectMixin'>
+  <class 'latplan.model.BaseActionMixin'>
+  <class 'latplan.model.TransitionWrapper'>
+  <class 'latplan.model.StateAE'>
+  <class 'latplan.mixins.latent.ConcreteLatentMixin'>
+  <class 'latplan.model.EarlyStopMixin'>
+  <class 'latplan.mixins.encoder_decoder.FullConnectedMixin'>
+  <class 'latplan.mixins.encoder_decoder.EncoderDecoderMixin'>
+  <class 'latplan.model.AE'>
+  <class 'latplan.network.Network'>
+  <class 'object'>
+clearning tf session
+cleared tf session
+Building networks
+building a convolutional encoder
+pool per layer: 1 depth: 2 total pool: 1 H: 48 W: 48 dH: 0 dW: 0
+<keras.layers.convolutional.Conv2D object at 0x7ffa31e05d90>
+[0, 48, 48, 1] -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7ffa31e05d90>
+<keras.layers.normalization.BatchNormalization object at 0x7ffa31c8a520>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa31c8a520>
+<keras.layers.core.Dropout object at 0x7ffa31c8a250>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa31c8a250>
+<keras.layers.convolutional.Conv2D object at 0x7ffa31c8a2b0>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7ffa31c8a2b0>
+<keras.layers.normalization.BatchNormalization object at 0x7ffa31c8a100>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa31c8a100>
+<keras.layers.core.Dropout object at 0x7ffa31c8ae20>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa31c8ae20>
+latent space shape is (48, 48, 32) : 300 propositions in total
+building a convolutional decoder
+pool per layer: 1 depth: 2 total pool: 1 H: 48 W: 48 dH: 0 dW: 0
+<keras.layers.core.Reshape object at 0x7ffa31c22430>
+[0, 48, 48, 32] -> (0, 48, 48, 32) : <keras.layers.core.Reshape object at 0x7ffa31c22430>
+<keras.layers.convolutional.Conv2DTranspose object at 0x7ffa31c22460>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2DTranspose object at 0x7ffa31c22460>
+<keras.layers.normalization.BatchNormalization object at 0x7ffa31c22640>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa31c22640>
+<keras.layers.core.Dropout object at 0x7ffa31c22b80>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa31c22b80>
+<keras.layers.convolutional.Conv2DTranspose object at 0x7ffa31c22580>
+(0, 48, 48, 32) -> (0, 48, 48, 1) : <keras.layers.convolutional.Conv2DTranspose object at 0x7ffa31c22580>
+uhuhihh
+(?, 2, 48, 48, 1)
+action_inputaction_input
+(?, 24)
+this apply3
+Network built
+Building auxiliary networks
+this apply3
+Auxiliary network built
+Compiling networks
+there are 1 networks.
+there are 1 optimizers.
+there are 1 losses.
+compiling <keras.engine.training.Model object at 0x7ffa2ecab760> with <keras_radam.optimizers.RAdam object at 0x7ffa2e7cafa0>, <function BaseActionMixinAMA4Plus._build_primary.<locals>.loss at 0x7ffa2ecae4c0>.
+Network compiled
+<class 'list'>
+10800
+2
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+shape train_data_cachetrain_data_cache
+(27, 400, 2)
+Saving the network to samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/neat-sweep-7CustomDatasetMore/logs/05-06T11:21:55.052/
+saving additional networks
+Network saved

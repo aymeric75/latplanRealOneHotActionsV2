@@ -1,0 +1,8 @@
+wandb_version: 1
+
+N:
+  value: 100
+beta_ama_recons:
+  value: 100
+beta_d:
+  value: 1000
