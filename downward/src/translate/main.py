@@ -678,7 +678,11 @@ def dump_statistics(sas_task):
 
 def main():
 
+    import re
+    liste = [  0,  79,  95, 175, 184, 232, 252, 261, 271, 272, 290]
 
+    #liste = [ 42, 49, 64, 131, 134, 154, 162, 183, 206, 233, 241, 290]
+    
     from FDgrounder import pddl_parser as pddl_pars
     print("hh1")
     timer = timers.Timer()
@@ -694,6 +698,29 @@ def main():
     # print("ok")
     # print(task.actions[0].effects[0].dump())
     # print("ahbon")
+    print("taskinit")
+    print(task.init)
+    task_init = task.init
+    for word in task.init:
+        matches = re.findall('\d+', str(word))
+        if matches:
+            if int(matches[0]) in liste:
+                task_init.remove(word)
+    task.init = task_init
+    print(task.init)
+    print()
+    print("uhygtf")
+    print(task.goal.parts)
+    task_goal = list(task.goal.parts)
+    for word in task.goal.parts:
+        matches = re.findall('\d+', str(word))
+        if matches:
+            if int(matches[0]) in liste:
+                task_goal.remove(word)
+    task.goal.parts = tuple(task_goal) 
+    print()
+    #print(task.goal.dump())
+    print(task.goal.parts)
 
     task.domain_name = "latent"
 
@@ -718,6 +745,92 @@ def main():
         f = open(sys.argv[1], "w")
         f.write(task.get_pddl_domain())
         f.close()
+
+
+    #########################################################################################
+    # 'remove_zi' Foreach action REMOVE the zi from a given list
+    #########################################################################################
+    if("--operation=remove_zi" == sys.argv [-1]):
+
+        
+
+        ## CLEANING THE PROBLEM (given in the args)
+        theproblem = task.get_pddl_problem()
+        print("theee")
+        print(type(theproblem))
+        print(theproblem)
+        # parse_task_and_remove_zi
+
+
+    
+        # CLEANING THE DOMAIN
+
+        print("putainnnn")
+        
+        
+        had_truc = False
+        #print("OOOOOOOOOOOOOOOO")
+        # Remove the predicates
+        print(task.predicates[0].name)
+        task_predicates = task.predicates
+        for pred in task.predicates:
+            matches = re.findall('\d+', pred.name)
+            if matches:
+                #print(int(matches[0]))
+                if int(matches[0]) in liste:
+                    task_predicates.remove(pred)
+
+        task.predicates = task_predicates
+        print("H1")
+
+
+        for act in task.actions:
+            # print("ancient act")
+            # print(act.dump())
+            # on enleve des effets
+            tmp_act_effects = act.effects
+            tmp_act_precondition_parts = list(act.precondition.parts)
+            print()
+            print()
+        
+            print("H2")
+            for pr in act.precondition.parts:
+               
+                for word in str(pr).split():
+                    matches = re.findall('\d+', word)
+                    if matches:
+                        #print(int(matches[0]))
+                        if int(matches[0]) in liste:
+                            had_truc = True
+                            tmp_act_precondition_parts.remove(pr)
+             
+            print("H3")
+            for e in act.effects:
+                #print("e")
+                #print(str(e.literal))
+                for word in str(e.literal).split():
+                    matches = re.findall('\d+', word)
+                    if matches:
+                        if int(matches[0]) in liste:
+                            print("wasSSSS")
+                            tmp_act_effects.remove(e)
+                 
+            act.precondition.parts = tuple(tmp_act_precondition_parts)
+            act.effects = tmp_act_effects
+            #print(tmp_act_precondition_parts)
+            # if had_truc:
+            #     exit()
+            
+    
+        f = open(sys.argv[2], "w")
+        f.write(task.get_pddl_problem())
+        f.close()
+        
+            
+        f = open(sys.argv[1], "w")
+        f.write(task.get_pddl_domain())
+        f.close()
+
     #########################################################################################
     # 'remove_not_from_prob'
     # JUST OVERRIDE... because FD will by default remove the NOTs from the init state... !!

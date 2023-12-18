@@ -1,0 +1,120 @@
+{
+  "network": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE",
+  "problem": "014-003",
+  "domain": "puzzle-mnist-3-3",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.21562933921813965,
+      "elapsed": 0.21562933921813965
+    },
+    {
+      "message": "loaded sae",
+      "wall": 4.114458084106445,
+      "elapsed": 3.8988287448883057
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 4.11466646194458,
+      "elapsed": 0.00020837783813476562
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 4.114671468734741,
+      "elapsed": 5.0067901611328125e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 11.721404314041138,
+      "elapsed": 7.6067328453063965
+    },
+    {
+      "message": "start planning",
+      "wall": 11.721418857574463,
+      "elapsed": 1.4543533325195312e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 11.72158408164978,
+      "elapsed": 0.0001652240753173828
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 11.997392416000366,
+      "elapsed": 0.27580833435058594
+    }
+  ],
+  "heuristics": "lama",
+  "domainfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE//domain.pddl",
+  "problemfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.pddl",
+  "planfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.plan",
+  "tracefile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.trace",
+  "csvfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.csv",
+  "pngfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.png",
+  "jsonfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/radiant-sweep-7FrozenSAE/puzzle-mnist-3-3/014-003/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_radiant-sweep-7FrozenSAE_domain_lama_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 300,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "A": 24,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 10000,
+    "beta_z": 10,
+    "output": "GaussianOutput(sigma=0.1)",
+    "type": "mnist",
+    "width": 3,
+    "height": 3,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "generator": "latplan.puzzles.puzzle_mnist",
+    "picsize": [
+      48,
+      48
+    ],
+    "HOSTNAME": "cccxc412.pok.ibm.com",
+    "LSB_JOBID": "2105063",
+    "gpu": "Tesla V100-SXM2-32GB",
+    "time_start": "05-06T11:21:55.052",
+    "do_sweep": false,
+    "use_wandb": true,
+    "load_sae_weights": true,
+    "beta_ama_recons": 1
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

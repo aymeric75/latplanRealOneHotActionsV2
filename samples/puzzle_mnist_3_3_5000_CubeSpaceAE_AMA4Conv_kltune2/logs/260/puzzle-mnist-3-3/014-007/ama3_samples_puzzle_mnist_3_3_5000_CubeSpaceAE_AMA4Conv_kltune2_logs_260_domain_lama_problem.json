@@ -1,0 +1,120 @@
+{
+  "network": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260",
+  "problem": "014-007",
+  "domain": "puzzle-mnist-3-3",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.24970245361328125,
+      "elapsed": 0.24970245361328125
+    },
+    {
+      "message": "loaded sae",
+      "wall": 4.840699911117554,
+      "elapsed": 4.5909974575042725
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 4.840815544128418,
+      "elapsed": 0.00011563301086425781
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 4.840820789337158,
+      "elapsed": 5.245208740234375e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 18.257405519485474,
+      "elapsed": 13.416584730148315
+    },
+    {
+      "message": "start planning",
+      "wall": 18.25742268562317,
+      "elapsed": 1.71661376953125e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 18.2576003074646,
+      "elapsed": 0.00017762184143066406
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 18.48261332511902,
+      "elapsed": 0.22501301765441895
+    }
+  ],
+  "heuristics": "lama",
+  "domainfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260//domain.pddl",
+  "problemfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.pddl",
+  "planfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.plan",
+  "tracefile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.trace",
+  "csvfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.csv",
+  "pngfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.png",
+  "jsonfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/014-007/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 260,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "A": 24,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 100,
+    "beta_z": 10,
+    "output": "GaussianOutput(sigma=0.1)",
+    "type": "mnist",
+    "width": 3,
+    "height": 3,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "generator": "latplan.puzzles.puzzle_mnist",
+    "picsize": [
+      48,
+      48
+    ],
+    "HOSTNAME": "cccxc412.pok.ibm.com",
+    "LSB_JOBID": "2105063",
+    "gpu": "Tesla V100-SXM2-32GB",
+    "time_start": "05-06T11:21:55.052",
+    "do_sweep": false,
+    "use_wandb": true,
+    "load_sae_weights": false,
+    "beta_ama_recons": 1
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

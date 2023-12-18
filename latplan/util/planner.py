@@ -32,12 +32,21 @@ def init_goal_misc(p, cycle=1, noise=None):
 
     def load_image(name):
         image = imageio.imread(problem(f"{name}.png")) / 255
+        print("IIIMMMMM")
+        print(image.shape) # (48, 48)
         if len(image.shape) == 2:
             image = image.reshape(*image.shape, 1)
+        print("IIMMMM222") # (48, 48, 1)
+        print(image.shape)
         image = sae.output.normalize(image)
+        print("IIMMMM333") # (48, 48, 1)
+        print(image.shape)
         return image
 
-    def autoencode_image(name,image):
+    def autoencode_image(name, image):
+        print("IMAGE SHAPE")
+        print(image.shape)
+        #state = sae.encode(np.array(image))[0].round().astype(int)
         state = sae.encode(np.array([image]))[0].round().astype(int)
         image_rec = sae.decode(np.array([state]))[0]
         print(f"{name} (input) min:",image.min(),"max:",image.max(),)
@@ -53,6 +62,8 @@ def init_goal_misc(p, cycle=1, noise=None):
 
     def load_and_encode_image(name):
         image0 = load_image(name)
+        print(image0)
+        #image0 = image0.squeeze()
         if noise is not None:
             print(f"adding gaussian noise N(0,{noise})")
             image = gaussian(image0, noise)
@@ -61,6 +72,8 @@ def init_goal_misc(p, cycle=1, noise=None):
         images = [image]
         for i in range(cycle):
             state, image = autoencode_image(name,image)
+            print("puuutttaaaiiinnnn")
+            print(image.shape)
             images.append(image)
         return image0, state, image, images
 
@@ -70,8 +83,30 @@ def init_goal_misc(p, cycle=1, noise=None):
 
     # print("init images")
     # print(init_images)
-    # exit()
-    
+    # # exit()
+    # print("init_images.shape")
+    # print(len(init_images)) # 2
+
+    # print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+    # print(init_images[0].shape) # (1, 4, 16, 3)
+    # print(init_images[1].shape) # (1, 4, 16, 3)
+    # print("hhhhhhhhhhhhhhh")
+
+    # init_image0 = np.expand_dims(init_images[0].squeeze(), axis=0)
+    # init_image1 = np.expand_dims(init_images[1].squeeze(), axis=0)
+
+    # concatenated1 = np.concatenate([init_image0, init_image1], axis=0)
+
+    # goal_image0 = np.expand_dims(goal_images[0].squeeze(), axis=0)
+    # goal_image1 = np.expand_dims(goal_images[1].squeeze(), axis=0)
+
+    # concatenated2 = np.concatenate([goal_image0, goal_image1], axis=0)
+
+    # concatenated3 = np.concatenate([concatenated1, concatenated2], axis=0)
+
+    # sae.plot(concatenated3,
+    #          path=problem(ama(network(f"init_goal_reconstruction.{cycle}.png"))))
+
 
     sae.plot(np.concatenate([init_images,goal_images]),
              path=problem(ama(network(f"init_goal_reconstruction.{cycle}.png"))))

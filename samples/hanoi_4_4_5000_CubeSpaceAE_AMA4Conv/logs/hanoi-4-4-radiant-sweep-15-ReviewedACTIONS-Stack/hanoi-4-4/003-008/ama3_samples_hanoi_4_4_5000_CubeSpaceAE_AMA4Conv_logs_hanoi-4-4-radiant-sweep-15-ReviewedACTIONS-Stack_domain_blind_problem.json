@@ -1,0 +1,121 @@
+{
+  "network": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack",
+  "problem": "003-008",
+  "domain": "hanoi-4-4",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.481123685836792,
+      "elapsed": 0.481123685836792
+    },
+    {
+      "message": "loaded sae",
+      "wall": 3.8013815879821777,
+      "elapsed": 3.3202579021453857
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 3.8014652729034424,
+      "elapsed": 8.368492126464844e-05
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 3.801469087600708,
+      "elapsed": 3.814697265625e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 8.275691032409668,
+      "elapsed": 4.47422194480896
+    },
+    {
+      "message": "start planning",
+      "wall": 8.275706768035889,
+      "elapsed": 1.5735626220703125e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 8.275844097137451,
+      "elapsed": 0.0001373291015625
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 8.504650592803955,
+      "elapsed": 0.2288064956665039
+    }
+  ],
+  "heuristics": "blind",
+  "domainfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack//domain.pddl",
+  "problemfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.pddl",
+  "planfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.plan",
+  "tracefile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.trace",
+  "csvfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.csv",
+  "pngfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.png",
+  "jsonfile": "samples/hanoi_4_4_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack/hanoi-4-4/003-008/ama3_samples_hanoi_4_4_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack_domain_blind_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 300,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "fc_width": 100,
+    "fc_depth": 2,
+    "A": 180,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 1000,
+    "beta_z": 1,
+    "output": "GaussianOutput(sigma=0.1)",
+    "mode": "learn",
+    "disks": 4,
+    "towers": 4,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "generator": "latplan.puzzles.hanoi",
+    "gpu": "NVIDIA A100-SXM4-80GB MIG 3g.40gb",
+    "time_start": "12-16T16:30:45.241",
+    "picsize": [
+      4,
+      16,
+      3
+    ],
+    "load_sae_weights": false,
+    "do_sweep": false,
+    "use_wandb": true,
+    "beta_a_recons": 1
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

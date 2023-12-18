@@ -1,0 +1,120 @@
+{
+  "network": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260",
+  "problem": "007-017",
+  "domain": "puzzle-mnist-3-3",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.2360854148864746,
+      "elapsed": 0.2360854148864746
+    },
+    {
+      "message": "loaded sae",
+      "wall": 4.765120506286621,
+      "elapsed": 4.5290350914001465
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 4.765275716781616,
+      "elapsed": 0.0001552104949951172
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 4.76528000831604,
+      "elapsed": 4.291534423828125e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 15.367873430252075,
+      "elapsed": 10.602593421936035
+    },
+    {
+      "message": "start planning",
+      "wall": 15.367911577224731,
+      "elapsed": 3.814697265625e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 15.368231296539307,
+      "elapsed": 0.0003197193145751953
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 15.710078477859497,
+      "elapsed": 0.34184718132019043
+    }
+  ],
+  "heuristics": "lama",
+  "domainfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260//domain.pddl",
+  "problemfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.pddl",
+  "planfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.plan",
+  "tracefile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.trace",
+  "csvfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.csv",
+  "pngfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.png",
+  "jsonfile": "samples/puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2/logs/260/puzzle-mnist-3-3/007-017/ama3_samples_puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2_logs_260_domain_lama_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 260,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "A": 24,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 100,
+    "beta_z": 10,
+    "output": "GaussianOutput(sigma=0.1)",
+    "type": "mnist",
+    "width": 3,
+    "height": 3,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "generator": "latplan.puzzles.puzzle_mnist",
+    "picsize": [
+      48,
+      48
+    ],
+    "HOSTNAME": "cccxc412.pok.ibm.com",
+    "LSB_JOBID": "2105063",
+    "gpu": "Tesla V100-SXM2-32GB",
+    "time_start": "05-06T11:21:55.052",
+    "do_sweep": false,
+    "use_wandb": true,
+    "load_sae_weights": false,
+    "beta_ama_recons": 1
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

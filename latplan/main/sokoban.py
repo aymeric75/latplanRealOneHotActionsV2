@@ -8,6 +8,9 @@ from . import common
 from ..util.stacktrace import format
 
 def load_sokoban(track,num_examples,objects=True,**kwargs):
+    print("TRAACK")
+    # sokoban_image-20000-global-global-2-train
+    print(track)
     with np.load(os.path.join(latplan.__path__[0],"puzzles",track+".npz")) as data:
         pres   = data['pres'][:num_examples] / 255 # [B,O,sH*sW*C]
         sucs   = data['sucs'][:num_examples] / 255 # [B,O,sH*sW*C]
@@ -33,6 +36,8 @@ def load_sokoban(track,num_examples,objects=True,**kwargs):
 # flat images
 
 def sokoban(args):
+    print("ARGSS")
+    print(args)
     parameters["generator"] = "latplan.puzzles.sokoban"
     transitions, states = load_sokoban(**vars(args),objects=False)
 

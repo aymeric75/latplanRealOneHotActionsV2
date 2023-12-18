@@ -253,6 +253,8 @@ The latter two are used for verifying the performance of the AE.
 
 class ZeroSuppressMixin:
     def _build_around(self,input_shape):
+        print("_build_around0")
+        print(input_shape)
         super()._build_around(input_shape)
 
         alpha = StepSchedule(schedule={
@@ -278,6 +280,8 @@ class ZeroSuppressMixin:
 
 class EarlyStopMixin:
     def _build_around(self,input_shape):
+        print("_build_around1")
+        print(input_shape)
         super()._build_around(input_shape)
 
         # check all hyperparameters and ensure that the earlystop does not activate until all
@@ -647,6 +651,8 @@ class TransitionWrapper:
 
 
     def _build_around(self,input_shape):
+        print("_build_around2")
+        print(input_shape)
         super()._build_around(input_shape[1:])
 
     def _build_aux_around(self,input_shape):
@@ -915,6 +921,8 @@ class DetActionMixin:
                               M=self.parameters["A"],),
             ]),
         ]
+        print("_build_around3")
+        print(input_shape)
         super()._build_around(input_shape)
 
     def adim(self):
@@ -1204,6 +1212,10 @@ class LogitEffectMixin:
         self.eff_decoder_net = [
             MyFlatten(),
             Dense(np.prod(self.edim()),use_bias=False,kernel_regularizer=self.parameters["eff_regularizer"]),
+            # Dropout(0.2),
+            #Dense(np.prod(300),use_bias=False,kernel_regularizer=self.parameters["eff_regularizer"]),
+            # Dropout(0.2),
+            # Dense(np.prod(self.edim()),use_bias=True,kernel_regularizer=self.parameters["eff_regularizer"]),
             *([BN()] if self.btl_eff_batchnorm else [])
         ]
         if self.btl_pre_batchnorm:
@@ -1214,6 +1226,7 @@ class LogitEffectMixin:
 
     def _apply(self,z_pre,action):
         print("this apply3")
+        print(self.eff_decoder_net)
         l_eff     = Sequential(self.eff_decoder_net)(action)
         l_pre     = self.scaling_pre(z_pre)
         l_suc_aae = add([l_pre,l_eff])
@@ -1691,6 +1704,8 @@ class BaseActionMixinAMA3Plus(UnidirectionalMixin, BaseActionMixin):
                 # force compilation
                 self._compile(self.optimizers)
         self.callbacks.append(LambdaCallback(on_epoch_begin = update_dynamics_training_flag))
+        print("_build_around4")
+        print(input_shape)
         super()._build_around(input_shape)
 
     def _build_primary(self,input_shape):
@@ -1839,6 +1854,8 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
                 # force compilation
                 self._compile(self.optimizers)
         # self.callbacks.append(LambdaCallback(on_epoch_begin = update_dynamics_training_flag))
+        print("_build_around5")
+        print(input_shape)
         super()._build_around(input_shape)
 
 
@@ -1928,17 +1945,18 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
 
         # print("input_shapeinput_shape")
         # print(input_shape) # (48, 48, 1)
-
+        #input_shape = (5, 36, 3)
 
         x = Input(shape=(2,*input_shape))
 
         print("uhuhihh")
-        print(x.shape)
+        print(x.shape) # (?, 2, 4, 16, 3)
+
 
 
         action_input = Input(shape=(self.parameters["A"],))
-        print("action_inputaction_input") # (? ,24)
-        print(action_input.shape)
+        # print("action_inputaction_input") # (? ,24)
+        # print(action_input.shape)
         
 
         ###########################################################################
@@ -2006,8 +2024,8 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         kl_z0 = z_pre.loss(l_pre, p=self.parameters["zerosuppress"])
         kl_z1 = z_suc.loss(l_suc, p=self.parameters["zerosuppress"])
 
-        #kl_a_z0 = action.loss(l_action, logit_p=Sequential(self.p_a_z0_net)(z_pre))
-        #kl_a_z1 = action.loss(l_action, logit_p=Sequential(self.p_a_z1_net)(z_suc))
+        # kl_a_z0 = action.loss(l_action, logit_p=Sequential(self.p_a_z0_net)(z_pre))
+        # kl_a_z1 = action.loss(l_action, logit_p=Sequential(self.p_a_z1_net)(z_suc))
 
 
         kl_a_z0 = self.SpecificLoss(action_input, logit_p=Sequential(self.p_a_z0_net)(z_pre))
@@ -2021,6 +2039,8 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         x1y1 = _rec(x_suc,y_suc)
         x0y3 = _rec(x_pre,y_pre_aae)
         x1y2 = _rec(x_suc,y_suc_aae)
+
+        self.parameters["beta_a_recons"] = 1
 
         ama3_forward_loss1  = self.parameters["beta_z"] * kl_z0 + x0y0 + kl_a_z0 + self.parameters["beta_d"] * kl_z1z2 + x1y1
         ama3_forward_loss2  = self.parameters["beta_z"] * kl_z0 + x0y0 + kl_a_z0 + self.parameters["beta_a_recons"] * x1y2
@@ -2059,6 +2079,7 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         self.loss = loss
 
         # note: original z does not work because Model.save only saves the weights that are included in the computation graph between input and output.
+        #
         #self.net = Model(x, y_aae)
         self.net = Model(inputs=[x, action_input], outputs=y_aae)
        

@@ -1,0 +1,122 @@
+{
+  "network": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action",
+  "problem": "005-019",
+  "domain": "hanoi-3-9",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.48887014389038086,
+      "elapsed": 0.48887014389038086
+    },
+    {
+      "message": "loaded sae",
+      "wall": 4.613997936248779,
+      "elapsed": 4.125127792358398
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 4.614169359207153,
+      "elapsed": 0.00017142295837402344
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 4.614174127578735,
+      "elapsed": 4.76837158203125e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 11.926079034805298,
+      "elapsed": 7.3119049072265625
+    },
+    {
+      "message": "start planning",
+      "wall": 11.926098108291626,
+      "elapsed": 1.9073486328125e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 11.926282405853271,
+      "elapsed": 0.0001842975616455078
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 12.326666831970215,
+      "elapsed": 0.40038442611694336
+    }
+  ],
+  "heuristics": "lama",
+  "domainfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action//domain.pddl",
+  "problemfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.pddl",
+  "planfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.plan",
+  "tracefile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.trace",
+  "csvfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.csv",
+  "pngfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.png",
+  "jsonfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-simple-action/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-simple-action_domain_lama_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 50,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "fc_width": 100,
+    "fc_depth": 2,
+    "A": 72,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 1000,
+    "beta_z": 10,
+    "output": "GaussianOutput(sigma=0.1)",
+    "mode": "learn",
+    "disks": 3,
+    "towers": 9,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "hash": "hanoi",
+    "generator": "latplan.puzzles.hanoi",
+    "picsize": [
+      3,
+      36,
+      3
+    ],
+    "beta_a_recons": 1,
+    "load_sae_weights": false,
+    "use_wandb": true,
+    "gpu": "NVIDIA A100-SXM4-80GB MIG 3g.40gb",
+    "time_start": "12-11T17:04:49.012",
+    "do_sweep": false
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

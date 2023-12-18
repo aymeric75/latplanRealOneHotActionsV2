@@ -20,8 +20,13 @@ from skimage.util      import img_as_ubyte
 
 class VanillaRenderer:
     def normalize(self,x):
+        print("normalize11111")
         # Note: this method is later used by the planner. It is not used during the training/plotting.
+        
+        print(x.shape) # (48, 48, 1),    (4, 16, 3)
         mean = np.array(self.parameters["mean"])
+        print(mean.shape) # (48, 48, 1), (1, 2, 4, 16, 3)
+        print("meanshape")
         std  = np.array(self.parameters["std"])
         return (x-mean)/(std+1e-20)
 

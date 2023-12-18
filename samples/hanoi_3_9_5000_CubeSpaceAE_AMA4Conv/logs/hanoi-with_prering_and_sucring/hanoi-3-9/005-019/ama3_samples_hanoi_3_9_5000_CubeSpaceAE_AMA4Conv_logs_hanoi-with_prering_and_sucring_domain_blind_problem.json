@@ -1,0 +1,122 @@
+{
+  "network": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring",
+  "problem": "005-019",
+  "domain": "hanoi-3-9",
+  "noise": null,
+  "times": [
+    {
+      "message": "init",
+      "wall": 0,
+      "elapsed": 0
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 0.48006606101989746,
+      "elapsed": 0.48006606101989746
+    },
+    {
+      "message": "loaded sae",
+      "wall": 3.8551487922668457,
+      "elapsed": 3.3750827312469482
+    },
+    {
+      "message": "loaded puzzle",
+      "wall": 3.8552308082580566,
+      "elapsed": 8.20159912109375e-05
+    },
+    {
+      "message": "loading init/goal",
+      "wall": 3.8552346229553223,
+      "elapsed": 3.814697265625e-06
+    },
+    {
+      "message": "loaded init/goal",
+      "wall": 12.518731355667114,
+      "elapsed": 8.663496732711792
+    },
+    {
+      "message": "start planning",
+      "wall": 12.51874589920044,
+      "elapsed": 1.4543533325195312e-05
+    },
+    {
+      "message": "start generating problem",
+      "wall": 12.51889157295227,
+      "elapsed": 0.0001456737518310547
+    },
+    {
+      "message": "finished generating problem",
+      "wall": 12.763180255889893,
+      "elapsed": 0.24428868293762207
+    }
+  ],
+  "heuristics": "blind",
+  "domainfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring//domain.pddl",
+  "problemfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.pddl",
+  "planfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.plan",
+  "tracefile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.trace",
+  "csvfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.csv",
+  "pngfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.png",
+  "jsonfile": "samples/hanoi_3_9_5000_CubeSpaceAE_AMA4Conv/logs/hanoi-with_prering_and_sucring/hanoi-3-9/005-019/ama3_samples_hanoi_3_9_5000_CubeSpaceAE_AMA4Conv_logs_hanoi-with_prering_and_sucring_domain_blind_problem.json",
+  "parameters": {
+    "test_noise": false,
+    "test_hard": true,
+    "train_noise": true,
+    "train_hard": false,
+    "dropout_z": false,
+    "noise": 0.2,
+    "dropout": 0.2,
+    "optimizer": "radam",
+    "min_temperature": 0.5,
+    "epoch": 2000,
+    "gs_annealing_start": 0,
+    "gs_annealing_end": 1000,
+    "kl_cycle_start": 2000,
+    "clipnorm": 0.1,
+    "batch_size": 400,
+    "lr": 0.001,
+    "N": 50,
+    "zerosuppress": 0.1,
+    "densify": false,
+    "max_temperature": 5.0,
+    "conv_channel": 32,
+    "conv_channel_increment": 1,
+    "conv_kernel": 5,
+    "conv_pooling": 1,
+    "conv_per_pooling": 1,
+    "conv_depth": 3,
+    "fc_width": 100,
+    "fc_depth": 2,
+    "A": 864,
+    "aae_activation": "relu",
+    "aae_width": 1000,
+    "aae_depth": 2,
+    "eff_regularizer": null,
+    "beta_d": 1000,
+    "beta_z": 10,
+    "output": "GaussianOutput(sigma=0.1)",
+    "mode": "learn",
+    "disks": 3,
+    "towers": 9,
+    "num_examples": 5000,
+    "aeclass": "CubeSpaceAE_AMA4Conv",
+    "comment": "kltune2",
+    "hash": "hanoi",
+    "generator": "latplan.puzzles.hanoi",
+    "picsize": [
+      3,
+      36,
+      3
+    ],
+    "beta_a_recons": 1,
+    "load_sae_weights": false,
+    "use_wandb": true,
+    "gpu": "NVIDIA A100-SXM4-80GB MIG 3g.40gb",
+    "time_start": "12-11T17:04:49.012",
+    "do_sweep": false
+  },
+  "valid": false,
+  "found": false,
+  "exhausted": false,
+  "cycle": 1
+}

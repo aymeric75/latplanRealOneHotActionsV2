@@ -27,46 +27,90 @@ pwdd=$(pwd)
 
 
 
+# #################
+# ## PUZZLE MNIST
+
+
+# exec 1>49-makeplans.out 2>49-makeplans.err
+
+# task="puzzle"
+# type="mnist"
+# width_height="3 3"
+# #width_height="4 4"
+# nb_examples="5000"
+# #suffix="with" # = with author's weight, no noisy test init/goal
+# suffix="without" # = without author's weight, no noisy test init/goal
+# # suffix="noisywith"
+# # suffix="noisywithout"
+# baselabel="mnist_"$suffix
+# after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
+# pb_subdir="puzzle-mnist-3-3"
+
+# conf_folder="49"
+# domains_dirs=samples/$after_sample/logs
+
+
+# probs_subdir="puzzle-mnist-3-3"
+
+# label=mnist_without_052
+
+
+
 #################
-## PUZZLE MNIST
+## HANOI
 
+#exec 1>hanoi-3-9-makeplans.out 2>hanoi-3-9-makeplans.err
+exec 1>hanoi-4-4-makeplans.out 2>hanoi-4-4-makeplans.err
 
-exec 1>mymnist_neat-sweep-7CustomDatasetMore-makeplans.out 2>mymnist_neat-sweep-7CustomDatasetMore-makeplans.err
+# hanoi 5 9
 
-task="puzzle"
-type="mnist"
-width_height="3 3"
-#width_height="4 4"
+task="hanoi"
+#type="mnist"
+width_height="4 4"
+#width_height="3 9"
 nb_examples="5000"
 #suffix="with" # = with author's weight, no noisy test init/goal
 suffix="without" # = without author's weight, no noisy test init/goal
 # suffix="noisywith"
 # suffix="noisywithout"
 baselabel="mnist_"$suffix
-after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
-pb_subdir="puzzle-mnist-3-3"
+after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
+#after_sample="hanoi_3_9_5000_CubeSpaceAE_AMA4Conv"
+pb_subdir="hanoi-4-4"
+#pb_subdir="hanoi-3-9"
 
-conf_folder="neat-sweep-7CustomDatasetMore"
+conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack"
+#conf_folder="hanoi-test"
+
 domains_dirs=samples/$after_sample/logs
 
-
-probs_subdir="puzzle-mnist-3-3"
-
-label=mnist_without_052
+probs_subdir="hanoi-4-4"
+#probs_subdir="hanoi-3-9"
 
 
-# ## inspect latent
+
+
+# ./train_kltune.py remove_zi $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
+# exit 0
+
+
+# # regen aux.json
+
+# ./train_kltune.py regen_aux $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
+# exit 0
+
+## inspect latent
 
 
 # ./train_kltune.py inspect_latent $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
-# # exit 0
+# exit 0
 
-# ### do the report
+# # ## do the report
 
 # ./train_kltune.py report $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
 # exit 0
 
-# apply_actions
+# ## apply_actions
 
 # ./train_kltune.py apply_actions $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
 # exit 0
@@ -119,7 +163,7 @@ label=mnist_without_052
 # ## but this time generate the domain.pddl
 # for dir in $domains_dirs/*/
 # do
-#     if [[ "$(basename $dir)" == "neat-sweep-7CustomDatasetMore" ]]; then
+#     if [[ "$(basename $dir)" == "hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack" ]]; then
 #         current_dir=$(basename $dir)
 #         echo $current_dir
 
@@ -138,19 +182,22 @@ label=mnist_without_052
 # for dir in $domains_dirs/*/
 # do
 
-#     if [[ "$(basename $dir)" == "neat-sweep-7CustomDatasetMore" ]]; then
+#     if [[ "$(basename $dir)" == "hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack" ]]; then
 #         echo ${dir}domain.pddl
 #         echo $probs_subdir
             
-#         echo $dir$probs_subdir
+#         #echo $dir$probs_subdir
 
 #         for pb in $dir$probs_subdir/*/
 #         do
-#             ./ama3-planner-problem.py $dir/domain.pddl $pb lama 1
+#             #./ama3-planner-problem.py $dir/domain.pddl $pb lama 1
+#             ./ama3-planner-problem.py $dir/domain.pddl $pb blind 1
+#             #./ama3-planner-problem.py $dir/domain-nopre.pddl $pb blind 1
 #         done
 
 #     fi
 # done
+
 # exit 0
 
 
@@ -163,7 +210,7 @@ label=mnist_without_052
 # for dir in $domains_dirs/*/
 # do
 #     base_dir=$(basename $dir)
-#     if [[ "$base_dir" == "260" ]]
+#     if [[ "$base_dir" == "radiant-sweep-15-ReviewedACTIONS" ]]
 #     then
 #         for pb in $dir$probs_subdir/*/
 #         do
@@ -186,7 +233,7 @@ label=mnist_without_052
 # do 
 #     echo "11"
 #     base_dir=$(basename $dir)
-#     if [[ "$base_dir" == "260" ]]
+#     if [[ "$base_dir" == "radiant-sweep-15-ReviewedACTIONS" ]]
 #     then
 #         echo "22"
 #         for pb in $dir$probs_subdir/*/
@@ -195,8 +242,8 @@ label=mnist_without_052
 #             echo "33"
 #             echo $thepb
             
-#             #python $pwdd/downward/src/translate/main.py $dir/domain.pddl $thepb --operation='remove_duplicates'
-#             python $pwdd/downward/src/translate/main.py $dir/domain-nopre.pddl $thepb --operation='remove_duplicates'
+#             python $pwdd/downward/src/translate/main.py $dir/domain.pddl $thepb --operation='remove_duplicates'
+#             #python $pwdd/downward/src/translate/main.py $dir/domain-nopre.pddl $thepb --operation='remove_duplicates'
             
 #         done
 #     fi
@@ -205,19 +252,49 @@ label=mnist_without_052
 # exit 0
 
 
+
+
+
+# # REMOVE ZI from the domain
+# for dir in $domains_dirs/*/
+# do 
+#     echo "11"
+#     base_dir=$(basename $dir)
+#     if [[ "$base_dir" == "radiant-sweep-15-ReviewedACTIONS" ]]
+#     then
+#         echo "22"
+#         for pb in $dir$probs_subdir/*/
+#         do
+#             thepb=$(find /workspace/latplanRealOneHotActionsV2/$pb -type f -name "*problem.pddl")
+#             echo "33"
+#             echo $thepb
+#             echo "44"
+            
+#             python $pwdd/downward/src/translate/main.py $dir/domain.pddl $thepb --operation='remove_zi'
+#             #python $pwdd/downward/src/translate/main.py $dir/domain-nopre.pddl $thepb --operation='remove_zi'
+#             exit 0
+#         done
+#     fi
+# done
+
+# exit 0
+
+
+
+
 # 3) finally again same loop but this time : use the domain.pddl 
 #    and go over the problems and try to generate plans for them #   
 for dir in $domains_dirs/*/
 do
     echo "nouveau"
-    if [[ "$(basename $dir)" == "neat-sweep-7CustomDatasetMore" ]]; then
+    if [[ "$(basename $dir)" == "hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack" ]]; then
         echo ${dir}domain.pddl
         echo $probs_subdir
         
         ./ama3-planner-all.py $dir/domain.pddl $dir/$probs_subdir blind 1
         #./ama3-planner-all.py $dir/domain.pddl $dir/$probs_subdir lama 1
         #
-        #./ama3-planner-all.py $dir/domain-nopre.pddl $dir/$probs_subdir lama 1
+        #./ama3-planner-all.py $dir/domain-nopre.pddl $dir/$probs_subdir blind 1
     fi
 done
 

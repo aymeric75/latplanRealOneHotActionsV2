@@ -9,7 +9,7 @@ import sys
 import importlib
 import subprocess
 import datetime
-sys.path.append('../../')
+sys.path.append('../')
 from latplan.util import curry
 from latplan.util.noise import gaussian
 from latplan.util.search import dijkstra, reservoir_sampling, untuple

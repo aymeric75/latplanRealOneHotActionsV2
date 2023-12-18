@@ -6,7 +6,16 @@ import numpy as np
 import latplan.model
 import latplan.util.stacktrace
 from latplan.util.tuning import simple_genetic_search, parameters, nn_task, reproduce
-from latplan.util        import curry
+from latplan.util        import curry, ensure_list
+
+from ..util.noise import gaussian
+
+def _ensure_hyperparameters_list(parameters):
+    return {
+        k : ensure_list(v)
+        for k, v in parameters.items()
+    }
+
 
 ################################################################
 # globals
@@ -118,13 +127,15 @@ def main(parameters={}):
     latplan.util.tuning.parameters.update(parameters)
 
     import sys
-    global args, sae_path, thetask
+    global args, sae_path, thetask, theparameters
     args = parser.parse_args()
     task = args.task
     thetask = task
     delattr(args,"task")
     print(vars(args))
     latplan.util.tuning.parameters.update(vars(args))
+    
+    theparameters = parameters
 
     if(sys.argv[2]=="puzzle"):
         sae_path = "_".join(sys.argv[2:9])
@@ -235,10 +246,19 @@ def train_val_test_split(x):
 
 def run(path,transitions,extra=None):
 
+    print("typetr0")
+    print(type(transitions))
+    print(transitions.shape)
+    print("theparameters0000000000000000")
+    print(theparameters)
+    transitionss = transitions
+    
 
+    os.environ["WANDB_AGENT_MAX_INITIAL_FAILURES"]= "50"
 
     if(args.hash != ""):
         path_to_json = os.path.join(path+"/logs/"+args.hash)
+        #path_to_json = os.path.join(path+"/logs/")
 
     print(path_to_json)
 
@@ -249,8 +269,20 @@ def run(path,transitions,extra=None):
     else:
         parameters = {}
 
+    print("MEAN !!!")
+    #print(parameters["mean"])
+    print()
+    #print(len(parameters["mean"]))
+    print(np.array(parameters["mean"]).shape) # (1, 4, 16, 3)
+    # (4, 16, 3)
+
+    #print(np.array(parameters["mean"][0]).shape)
+    # print("picsize0")
+    # print(parameters["picsize"])
+
     train_for_report, val_for_report, test_for_report = train_val_test_split(transitions)
 
+    print("thetassssk")
     print(thetask.__name__)
     print(str(thetask))
 
@@ -260,7 +292,8 @@ def run(path,transitions,extra=None):
 
     
 
-    if thetask.__name__ == "mnist":
+    if thetask.__name__ == "puzzle":
+        print("IN MNISTT")
         from genMnist import return_transitions_one_hot
         transitions, actions_transitions = return_transitions_one_hot(augmented=False, custom=True)
     
@@ -271,20 +304,67 @@ def run(path,transitions,extra=None):
         print(args.towers)
         print(args.num_examples)
         from genHanoi import return_hanoi_transitions_and_actions
-        transitions = return_hanoi_transitions_and_actions(args, parameters)
+        transitions, actions_transitions = return_hanoi_transitions_and_actions(args, parameters, version="with_prering_and_sucring_and_stack")
+        #print(transitions)
+        #exit()
+
+
+
+    elif thetask.__name__ == "sokoban":
+        print("lil222")
+        print(args)
+        from genSokoban import return_sokoban
+        transitions = return_sokoban(args, parameters)
+        #print("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG55555555555555555")
+        print(transitions)
+
+
+    elif thetask.__name__ == "blocks":
+        print("blockyblock")
+        print(args)
+        from genBlocksworld import return_blocks
+        transitions = return_blocks(args, parameters)
+        print("TTTTTTTTTTTTTTT4444444444444444")
         print(transitions)
         exit()
 
-    print("actions_transitionsactions_transitions")
-    print(type(actions_transitions))
-    print(actions_transitions.shape) # (2400, 192)
-    print(actions_transitions[11]) # [0 0 0 0 0 0 0 0 0 0 1 0 0 .... ]
-    print() # 8 2 7, càd 0 pos 8, left, et 7 a cote
-    print()
-    plot_image(np.squeeze(transitions[11][0]),"TrBefore11")
-    plot_image(np.squeeze(transitions[11][1]),"TrAfter11")
+
+    # for hh in range(10, 20):
+
+
+    #     print("acccc")
+    #     print(actions_transitions[hh])
+    #     print(np.where(actions_transitions[hh] == 1))
+    #     #plt.imshow(transitions[10][0],interpolation='nearest',cmap='gray',)
+    #     plt.imshow(transitions[hh][0])
+    #     plt.savefig("hanoiPRE"+str(hh)+".png")
+
+    #     plt.imshow(transitions[hh][1])
+    #     plt.savefig("hanoiSUCC"+str(hh)+".png")
+
+
+    # print("typetr1")
+    # print(type(transitions))
+    # print(transitions.shape)
+    # exit()
+
+
+    #transitions, actions_transitions
+
+    # print("actions_transitionsactions_transitions")
+    # print(type(actions_transitions))
+    # print(actions_transitions.shape) # (2400, 192)
+    # print(actions_transitions[10]) # [0 0 0 0 0 0 0 0 0 0 1 0 0 .... ]
+    # print() # 8 2 7, càd 0 pos 8, left, et 7 a cote
+    # print(np.where(actions_transitions[10] == 1))
+    # print()
+    # plot_image(np.squeeze(transitions[11][0]),"TrBefore11")
+    # plot_image(np.squeeze(transitions[11][1]),"TrAfter11")
     print(type(transitions)) # numpy array
     print(transitions.shape) # (2800, 2, 48, 48, 1)
+
+    # plt.imshow()
+    
 
     # in this V2 version, actions_transitions must be represented directly as a one-hot 
     # vector
@@ -316,6 +396,7 @@ def run(path,transitions,extra=None):
     # concat = np.concatenate((transitions, r1), axis=1)
 
     # 
+    #all_transitions_with_actions = transitions
 
 
     train, val, test = train_val_test_split(all_transitions_with_actions)
@@ -347,27 +428,112 @@ def run(path,transitions,extra=None):
 
         import wandb
 
-        with wandb.init(config=config, group="GRIDModifiedApply", resume=False):
+        with wandb.init(config=config, group="GRIDHanoi-4-4", resume=True):
             
             path=path_to_json
             config = wandb.config
 
-            #parameters["beta_d"] = config.beta_d
+            parameters["beta_d"] = config.beta_d
+            parameters["beta_z"] = config.beta_z
+            parameters["N"] = config.N
             #parameters["beta_a_recons"] = config.beta_a_recons
             #parameters["beta_ama_recons"] = config.beta_ama_recons
-            parameters["aae_width"] = config.aae_width
-            parameters["dropout"] = config.dropout
+            #parameters["aae_width"] = config.aae_width
+            # parameters["dropout"] = config.dropout
             
-            parameters["A"] = 24
-            parameters["beta_d"] = 1000
-            parameters["beta_z"] = 10
+            # parameters["A"] = 24
+            # parameters["beta_d"] = 1000
+            # parameters["beta_z"] = 10
 
-            parameters["beta_a_recons"] = 1
+            # parameters["beta_a_recons"] = 1
 
-            parameters["N"] = 300
+            # parameters["N"] = 300
             parameters["epoch"] = 1200
+            parameters["time_start"] = args.hash
             task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 
             task()
+
+
+
+    def normalize(x,save=True):
+        mean               = np.mean(x,axis=0)
+        std                = np.std(x,axis=0)
+        return [mean.tolist()], [std.tolist()]
+        # if ("mean" in parameters) and save:
+        #     mean = np.array(parameters["mean"][0])
+        #     std  = np.array(parameters["std"][0])
+        # else:
+        #     mean               = np.mean(x,axis=0)
+        #     std                = np.std(x,axis=0)
+        #     if save:
+        #         parameters["mean"] = [mean.tolist()]
+        #         parameters["std"]  = [std.tolist()]
+        # print("normalized shape:",mean.shape,std.shape)
+        # return (x - mean)/(std+1e-20)
+
+
+    def normalize_transitions(pres,sucs):
+        """Normalize a dataset for image-based input format.
+    Normalization is performed across batches."""
+        B, *F = pres.shape
+        transitions = np.stack([pres,sucs], axis=1) # [B, 2, F]
+        print(transitions.shape)
+
+        means, stds  = normalize(np.reshape(transitions, [-1, *F])) # [2BO, F]
+        # states      = normalized.reshape([-1, *F])
+        # transitions = states.reshape([-1, 2, *F])
+        return means, stds
+
+
+    if 'remove_zi' in args.mode:
+
+        net = latplan.model.load(path_to_json, allow_failure=False)
+        
+        transitionss_noise = gaussian(transitionss)
+
+        zi = net.encode(transitionss[:,:,:,:,:]) # (5000, 2, 300)
+        zi_noise = net.encode(transitionss_noise[:,:,:,:,:])
+
+        absolute_differences = np.abs(zi - zi_noise)
+        #sum_of_differences = np.sum(absolute_differences, axis=2)
+
+        print(absolute_differences.shape)
+
+        sum1 = np.sum(absolute_differences, axis=0)
+        sum2 = np.sum(sum1, axis=0)
+        print(sum2)
+
+        print(np.where(sum2 != 0.))
+
+        exit()
+        # 
+        print()
+        print(zi[1])
+        print()
+        print(zi_noise[1])
+        print()
+        diff_indices_row1 = np.where(zi[1] != zi_noise[1])[0]
+        print("diff ")
+        print(diff_indices_row1)
+
+
+        ##### 
+
+        exit()
+
+    if 'regen_aux' in args.mode:
+        print("tttttrrr")
+        print(transitionss.shape) # (5000, 2, 4, 16, 3)
+
+        mean, std = normalize_transitions(transitionss[:,0,:,:,:],transitionss[:,1,:,:,:])
+
+        #normalize_transitions
+        print("MEAAAAN")
+        print(mean)
+        exit()
+
+        # with open(os.path.join(path_to_json,"aux.json"), "w") as f:
+        #     json.dump({"parameters": parameters}, f)
 
 
     if 'report' in args.mode:
@@ -386,30 +552,46 @@ def run(path,transitions,extra=None):
 
     if 'learn' in args.mode:
         
+        # #parameters["use_wandb"] = True
+        # #parameters["aeclass"] = 
+        # simple_genetic_search(
+        #     curry(nn_task, latplan.model.get(parameters["aeclass"]),
+        #           path,
+        #           train, train, val, val), # noise data is used for tuning metric
+        #     parameters,
+        #     path,
+        #     limit              = 100,
+        #     initial_population = 100,
+        #     population         = 100,
+        #     report             = report,
+        # )
+
+        # exit()
+
         import wandb
 
-        parameters["do_sweep"] = False
+        # parameters["do_sweep"] = True
 
-        # 2: Define the search space
-        sweep_configuration = {
-            "method": "grid",
-            "parameters": {
-                "aae_width": {"values": [100, 500, 1000]},
-                #"beta_d": {"values": [100, 1000, 10000]},
-                "dropout": {"values": [0., 0.1, 0.2]},
-                #"output": {"values": ["GaussianOutput(sigma=0.1)", "GaussianOutput(sigma=0.07)", "GaussianOutput(sigma=0.05)"]},
-                #"new_loss_divider": {"values": [5, 10]},
-                #"N": {"values": [300, 200, 100]},
-                #"beta_a_recons": {"values": [10, 100, 1000]}
-            },
-        }
+        # # 2: Define the search space
+        # sweep_configuration = {
+        #     "method": "grid",
+        #     "parameters": {
+        #         #"aae_width": {"values": [100, 500, 1000]},
+        #         "beta_d": {"values": [100, 1000, 10000]},
+        #         "beta_z": {"values": [1, 10]},
+        #         #"output": {"values": ["GaussianOutput(sigma=0.1)", "GaussianOutput(sigma=0.07)", "GaussianOutput(sigma=0.05)"]},
+        #         #"new_loss_divider": {"values": [5, 10]},
+        #         "N": {"values": [50, 100, 300]},
+        #         #"beta_a_recons": {"values": [10, 100, 1000]}
+        #     },
+        # }
 
-        parameters["use_wandb"] = True
+        # parameters["use_wandb"] = True
 
 
 
         # sweep_id = wandb.sweep(sweep_configuration, project="my-Latplan")
-        # wandb.agent(sweep_id, function=train_fn, count=9)
+        # wandb.agent("mc7358u2", function=train_fn, count=18)
 
 
 
@@ -418,18 +600,20 @@ def run(path,transitions,extra=None):
           
         }
         
+        wandb.login(key="2eec5f6bab880cdbda5c825881bbd45b4b3819d9")
 
-        with wandb.init(project="my-Latplan", group="Singleruns", name="neat-sweep-7CustomDatasetMore", resume=False):
+        with wandb.init(project="my-Latplan", group="SinglerunsHanoi", name="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack", resume=False):
             
             parameters["load_sae_weights"] = False
             parameters["do_sweep"] = False
             # parameters["N"] = 300
             # parameters["beta_d"] = 1000
-            parameters["beta_a_recons"] = 1
+            #parameters["beta_a_recons"] = 10
             # parameters["beta_z"] = 10
             parameters["epoch"] = 2000
             # parameters["aae_width"] = 100
             # parameters["dropout"] = 0
+            parameters["use_wandb"] = True
             
             config = wandb.config
             path = path_to_json
@@ -513,6 +697,21 @@ def run(path,transitions,extra=None):
         #dump_actions(net, transitions, name = "actions.csv", repeat=1)
 
 
+
+    def load_image(name):
+        image = imageio.imread(problem(f"{name}.png")) / 255
+        print("IIIMMMMM")
+        print(image.shape) # (48, 48)
+        if len(image.shape) == 2:
+            image = image.reshape(*image.shape, 1)
+        print("IIMMMM222") # (48, 48, 1)
+        print(image.shape)
+        image = sae.output.normalize(image)
+        print("IIMMMM333") # (48, 48, 1)
+        print(image.shape)
+        return image
+
+
     if 'apply_actions' in args.mode:
 
 
@@ -558,28 +757,34 @@ def run(path,transitions,extra=None):
         #
 
 
-        images = np.expand_dims(test[theindex][0].astype(np.float32), axis=0)
-        #images = test[4][0].astype(np.float32)
-        action = np.expand_dims(test[theindex][1].astype(np.float32), axis=0)
-        #actions = test[4][1].astype(np.float32)
-        print(images.shape)
-        print(action.shape)
-        print("theAction")
-        print(action)
-        plot_image(np.squeeze(images)[0],"ImBefore333")
+        # images = np.expand_dims(test[theindex][0].astype(np.float32), axis=0)
+        # #images = test[4][0].astype(np.float32)
+        # action = np.expand_dims(test[theindex][1].astype(np.float32), axis=0)
+        # #actions = test[4][1].astype(np.float32)
+        # print(images.shape)
+        # print(action.shape)
+        # print("theAction")
+        # print(action)
+        # plot_image(np.squeeze(images)[0],"ImBefore9999")
 
         next_image = net.net.predict([images, action])
+
+        # load_image(name)
+
         #next_image = net.net([tf.convert_to_tensor(images), tf.convert_to_tensor(actions)])
         # next_image = net.net([images, actions])
         print(type(next_image))
         print(next_image.shape)
-        plot_image(np.squeeze(next_image)[1],"ImAfterPredicted333")
-        plot_image(np.squeeze(images)[1],"ImAfterGroundTruth333")
+        plot_image(np.squeeze(next_image)[1],"ImAfterPredicted9999")
+        plot_image(np.squeeze(images)[1],"ImAfterGroundTruth9999")
         exit()
 
     if 'inspect_latent' in args.mode:
 
         net = latplan.model.load(path_to_json, allow_failure=False)
+
+        
+
         import tensorflow as tf
         print(net)
         # input shape (?, 2, 48, 48, 1)
@@ -588,6 +793,15 @@ def run(path,transitions,extra=None):
         #theinput = np.random.normal(0, 1., size=(1, 2, 48, 48, 1))
         #theinput = tf.convert_to_tensor(theinput)
         theinput = transitions[2]
+
+        outttt= net.autoencode(theinput)
+
+        plt.imshow(outttt[0])
+        plt.savefig('outttt.png')
+
+        print(outttt.shape) # (2, 3, 36, 3)
+
+        exit()
 
         latentvector = np.squeeze(np.array(net.encode(theinput)))
         print("latentvector")

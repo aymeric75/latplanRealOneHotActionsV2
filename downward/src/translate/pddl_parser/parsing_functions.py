@@ -292,6 +292,30 @@ def parse_axiom(alist, type_dict, predicate_dict):
                       len(predicate.arguments), condition)
 
 
+
+def parse_task_and_remove_zi(domain_pddl, task_pddl, liste_of_zi):
+    domain_name, domain_requirements, types, type_dict, constants, predicates, predicate_dict, functions, actions, axioms \
+                 = parse_domain_pddl(domain_pddl)
+    task_name, task_domain_name, task_requirements, objects, init, goal, use_metric = parse_task_pddl(task_pddl, type_dict, predicate_dict)
+
+    exit()
+    assert domain_name == task_domain_name
+    requirements = pddl.Requirements(sorted(set(
+                domain_requirements.requirements +
+                task_requirements.requirements)))
+    objects = constants + objects
+    check_for_duplicates(
+        [o.name for o in objects],
+        errmsg="error: duplicate object %r",
+        finalmsg="please check :constants and :objects definitions")
+    init += [pddl.Atom("=", (obj.name, obj.name)) for obj in objects]
+
+    return pddl.Task(
+        domain_name, task_name, requirements, types, objects,
+        predicates, functions, init, goal, actions, axioms, use_metric)
+
+
+
 def parse_task(domain_pddl, task_pddl):
     domain_name, domain_requirements, types, type_dict, constants, predicates, predicate_dict, functions, actions, axioms \
                  = parse_domain_pddl(domain_pddl)

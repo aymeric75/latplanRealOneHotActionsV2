@@ -59,8 +59,9 @@ def parse_args():
         "into its own layer unless it is part of a cycle.")
     
     argparser.add_argument(
-        "--operation", default="remove_duplicates", choices=["remove_duplicates", "remove_not_from_prob"],
+        "--operation", default="remove_duplicates", choices=["remove_duplicates", "remove_not_from_prob", "remove_zi"],
         help="remove_duplicates and remove_not_from_prob.")
+
 
 
 

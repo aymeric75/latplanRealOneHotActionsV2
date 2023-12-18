@@ -79,10 +79,16 @@ This dict can be used while building the network, making it easier to perform a 
 Users should not overload this method; Define _build_around() for each subclass instead.
 This function calls _build bottom-up from the least specialized class.
 Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around methods."""
+        
+        print("inbuild0")
+        print(args)
         if self.built:
             # print("Avoided building {} twice.".format(self))
             return
         print("Building networks")
+
+        print("inbuild1")
+        print(args)
         self._build_around(*args,**kwargs)
         self.built = True
         print("Network built")
@@ -95,9 +101,14 @@ Users may define a method for each subclass for adding a new build-time feature.
 Each method should call the _build_around() method of the superclass in turn.
 Users are not expected to call this method directly. Call build() instead.
 Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around methods."""
+        print("gggggg00000")
+        print(args)    
+    
         return self._build_primary(*args,**kwargs)
 
     def _build_primary(self,*args,**kwargs):
+        print("gggggg11111")
+        print(args)
         pass
 
     def build_aux(self,*args,**kwargs):
@@ -239,6 +250,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         """Rebuild the network for a shape that is different from the training time, then load the weights."""
         print(f"rebuilding the network with a new shape {input_shape}.")
         # self.build / self.loaded flag are ignored
+        print("uuuuuuuu")
         self._build_around(input_shape)
         self._build_aux_around(input_shape)
         for i, net in enumerate(self.nets):
@@ -349,13 +361,21 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             print("resuming the training")
             self.load(allow_failure=False, path="logs/"+self.parameters["resume_from"])
         else:
+            # print("traindatashape")
+            # print(train_data[0].shape)
+            #input_shape = (2, 48, 48, 1) # Mnist
+
+            input_shape = (2, 4, 16, 3) # Hanoi
+            # exit()
+            print("train_data.shapetrain_data.shape")
+            print(type(train_data))
+            print(type(train_data[0]))
+            #exit()
             #input_shape = train_data.shape[1:]
-            input_shape = (2, 48, 48, 1)
+            #input_shape = (2, 48, 48, 1)
             self.build(input_shape)
             self.build_aux(input_shape)
 
-
-        exit()
 
 
         SAE_layers = [
@@ -566,10 +586,18 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             #print(actions_array[0])
             #batch_size=1
             # attend (3, 48, 48, 1)
+
+            # NEW VERSION
             evals = self.nets[0].evaluate([images_array, actions_array],
                                     images_array,
                                     batch_size=batch_size,
                                     verbose=0)
+
+            # # CLASSIC VERSION
+            # evals = self.nets[0].evaluate(images_array,
+            #                 images_array,
+            #                 batch_size=batch_size,
+            #                 verbose=0)
 
             # 1) tu change uniquement ici (dans model.py mets juste en place le loss)
             #                                   et l'affichage des metrics
@@ -591,6 +619,25 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             logs["loss"] = np.sum(losses)
             return logs
 
+        # # CLASSIC VERSION
+        # def generate_logs(data,data_to):
+        #     losses = []
+        #     logs   = {}
+        #     for i, (net, subdata, subdata_to) in enumerate(zip(self.nets, data, data_to)):
+        #         evals = net.evaluate(subdata,
+        #                              subdata_to,
+        #                              batch_size=batch_size,
+        #                              verbose=0)
+        #         logs_net = { k:v for k,v in zip(net.metrics_names, ensure_list(evals)) }
+        #         losses.append(logs_net["loss"])
+        #         logs.update(logs_net)
+        #     if len(losses) > 2:
+        #         for i, loss in enumerate(losses):
+        #             logs["loss"+str(i)] = loss
+        #     logs["loss"] = np.sum(losses)
+        #     return logs
+
+
         try:
             clist.on_train_begin()
             logs = {}
@@ -607,7 +654,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 train_data_to_cache = [[ train_data_to[i] for i in indices_cache[j]] for j in range(len(indices_cache))]
                 
                 print("shape train_data_cachetrain_data_cache")
-                print(np.array(train_data_cache).shape) # 
+                #print(np.array(train_data_cache).shape) # 
 
                 batch_count=0
                 clist.on_epoch_begin(epoch,logs)
@@ -636,8 +683,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                     action_input_data = np.array(action_input_data)
                     
                     # print(action_input_data.shape) # (400, 2)
-                    # print("x_data.shape")
-                    # print(x_data.shape) # (400, 2, 48, 48, 1)
+                    print("x_data.shape")
+                    print(x_data.shape) # (400, 2, 48, 48, 1)
 
                     # [ CODE for if one Input ]
                     # action_input_data = np.expand_dims(action_input_data, axis=-1)
@@ -654,13 +701,12 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                     # (010) (010)
                     # (010) (010)
                     # (010) (010)
-
-
-                    #net.train_on_batch(resu, x_data)
-                    # action_input_data must be like (400, 24)
-                    net.train_on_batch([x_data, action_input_data], x_data)
                     
-
+                    # action_input_data must be like (400, 24)
+                    net.train_on_batch([x_data, action_input_data], x_data) # NEW VERSION
+                    #net.train_on_batch(x_data, x_data) # CLASSIC VERSION OF LATPLAN
+                    
+                    
                     # logs = {}
                     # for k,v in generate_logs(train_data, train_data_to).items():
                     #     logs["t_"+k] = v
@@ -672,10 +718,11 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 
 
 
-
                 logs = {}
+                # # CLASSIC VERSION
                 # for k,v in generate_logs(train_data, train_data_to).items():
                 #     logs["t_"+k] = v
+                # NEW VERSION
                 for k,v in generate_logs(val_data,  val_data_to, epoch=epoch, forwandb=self.parameters["use_wandb"]).items():
                     logs["v_"+k] = v
                 clist.on_epoch_end(epoch,logs)

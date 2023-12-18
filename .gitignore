@@ -19,7 +19,6 @@ learn/events*
 *.lprof
 *.h5
 /samples/table
-samples*/
 problem-instances/*/
 blocks*/
 countries*/

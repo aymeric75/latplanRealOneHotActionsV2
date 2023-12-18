@@ -14,7 +14,7 @@
 #     sh bootstrap
 #     ./configure
 #     make
-#     sudo make install
+#     make install
 #     ros setup
 # )
 
