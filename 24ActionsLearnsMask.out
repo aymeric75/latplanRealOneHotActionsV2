@@ -14,7 +14,7 @@ MEAN !!!
 
 thetassssk
 puzzle
-<function puzzle at 0x7ff86ede5ee0>
+<function puzzle at 0x7f11dc08ef70>
 IN MNISTT
 all_combis_augmented
 [array([0, 1, 1]), array([0, 1, 2]), array([0, 1, 3]), array([0, 1, 4]), array([0, 1, 5]), array([0, 1, 6]), array([0, 1, 7]), array([0, 1, 8]), array([0, 3, 1]), array([0, 3, 2]), array([0, 3, 3]), array([0, 3, 4]), array([0, 3, 5]), array([0, 3, 6]), array([0, 3, 7]), array([0, 3, 8]), array([1, 1, 1]), array([1, 1, 2]), array([1, 1, 3]), array([1, 1, 4]), array([1, 1, 5]), array([1, 1, 6]), array([1, 1, 7]), array([1, 1, 8]), array([1, 2, 1]), array([1, 2, 2]), array([1, 2, 3]), array([1, 2, 4]), array([1, 2, 5]), array([1, 2, 6]), array([1, 2, 7]), array([1, 2, 8]), array([1, 3, 1]), array([1, 3, 2]), array([1, 3, 3]), array([1, 3, 4]), array([1, 3, 5]), array([1, 3, 6]), array([1, 3, 7]), array([1, 3, 8]), array([2, 1, 1]), array([2, 1, 2]), array([2, 1, 3]), array([2, 1, 4]), array([2, 1, 5]), array([2, 1, 6]), array([2, 1, 7]), array([2, 1, 8]), array([2, 2, 1]), array([2, 2, 2]), array([2, 2, 3]), array([2, 2, 4]), array([2, 2, 5]), array([2, 2, 6]), array([2, 2, 7]), array([2, 2, 8]), array([3, 0, 1]), array([3, 0, 2]), array([3, 0, 3]), array([3, 0, 4]), array([3, 0, 5]), array([3, 0, 6]), array([3, 0, 7]), array([3, 0, 8]), array([3, 1, 1]), array([3, 1, 2]), array([3, 1, 3]), array([3, 1, 4]), array([3, 1, 5]), array([3, 1, 6]), array([3, 1, 7]), array([3, 1, 8]), array([3, 3, 1]), array([3, 3, 2]), array([3, 3, 3]), array([3, 3, 4]), array([3, 3, 5]), array([3, 3, 6]), array([3, 3, 7]), array([3, 3, 8]), array([4, 0, 1]), array([4, 0, 2]), array([4, 0, 3]), array([4, 0, 4]), array([4, 0, 5]), array([4, 0, 6]), array([4, 0, 7]), array([4, 0, 8]), array([4, 1, 1]), array([4, 1, 2]), array([4, 1, 3]), array([4, 1, 4]), array([4, 1, 5]), array([4, 1, 6]), array([4, 1, 7]), array([4, 1, 8]), array([4, 2, 1]), array([4, 2, 2]), array([4, 2, 3]), array([4, 2, 4]), array([4, 2, 5]), array([4, 2, 6]), array([4, 2, 7]), array([4, 2, 8]), array([4, 3, 1]), array([4, 3, 2]), array([4, 3, 3]), array([4, 3, 4]), array([4, 3, 5]), array([4, 3, 6]), array([4, 3, 7]), array([4, 3, 8]), array([5, 0, 1]), array([5, 0, 2]), array([5, 0, 3]), array([5, 0, 4]), array([5, 0, 5]), array([5, 0, 6]), array([5, 0, 7]), array([5, 0, 8]), array([5, 1, 1]), array([5, 1, 2]), array([5, 1, 3]), array([5, 1, 4]), array([5, 1, 5]), array([5, 1, 6]), array([5, 1, 7]), array([5, 1, 8]), array([5, 2, 1]), array([5, 2, 2]), array([5, 2, 3]), array([5, 2, 4]), array([5, 2, 5]), array([5, 2, 6]), array([5, 2, 7]), array([5, 2, 8]), array([6, 0, 1]), array([6, 0, 2]), array([6, 0, 3]), array([6, 0, 4]), array([6, 0, 5]), array([6, 0, 6]), array([6, 0, 7]), array([6, 0, 8]), array([6, 3, 1]), array([6, 3, 2]), array([6, 3, 3]), array([6, 3, 4]), array([6, 3, 5]), array([6, 3, 6]), array([6, 3, 7]), array([6, 3, 8]), array([7, 0, 1]), array([7, 0, 2]), array([7, 0, 3]), array([7, 0, 4]), array([7, 0, 5]), array([7, 0, 6]), array([7, 0, 7]), array([7, 0, 8]), array([7, 2, 1]), array([7, 2, 2]), array([7, 2, 3]), array([7, 2, 4]), array([7, 2, 5]), array([7, 2, 6]), array([7, 2, 7]), array([7, 2, 8]), array([7, 3, 1]), array([7, 3, 2]), array([7, 3, 3]), array([7, 3, 4]), array([7, 3, 5]), array([7, 3, 6]), array([7, 3, 7]), array([7, 3, 8]), array([8, 0, 1]), array([8, 0, 2]), array([8, 0, 3]), array([8, 0, 4]), array([8, 0, 5]), array([8, 0, 6]), array([8, 0, 7]), array([8, 0, 8]), array([8, 2, 1]), array([8, 2, 2]), array([8, 2, 3]), array([8, 2, 4]), array([8, 2, 5]), array([8, 2, 6]), array([8, 2, 7]), array([8, 2, 8])]
@@ -26,14 +26,14 @@ ppppppppppppp
 custom true
 pres_configs 000
 40320
-[7 6 4 8 1 5 2 0 3]
-[7 6 4 8 0 5 2 1 3]
+[1 8 4 5 2 7 6 0 3]
+[1 8 4 5 0 7 6 2 3]
 pres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configspres_configs
 right_pres_configs
-tensor([7, 6, 4, 8, 1, 5, 2, 0, 3])
+tensor([1, 8, 4, 5, 2, 7, 6, 0, 3])
 torch.Size([40320, 9])
 right_sucs_configs
-tensor([7, 6, 4, 8, 0, 5, 2, 1, 3])
+tensor([1, 8, 4, 5, 0, 7, 6, 2, 3])
 zero_positions_pres
 tensor(7)
 
@@ -61,8 +61,8 @@ tensor(0, dtype=torch.int32)
 zero_positions_pres
 tensor(7)
 iiiii
-tensor([7, 6, 4, 8, 0, 5, 2, 1, 3])
-tensor(1)
+tensor([1, 8, 4, 5, 0, 7, 6, 2, 3])
+tensor(2)
 neighsssss
 kkk
 torch.Size([40320])
@@ -175,42 +175,63 @@ _build_around1
 (48, 48, 1)
 building a convolutional encoder
 pool per layer: 1 depth: 2 total pool: 1 H: 48 W: 48 dH: 0 dW: 0
-<keras.layers.convolutional.Conv2D object at 0x7ffa7fecd850>
-[0, 48, 48, 1] -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7ffa7fecd850>
-<keras.layers.normalization.BatchNormalization object at 0x7ffa7fecdd00>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa7fecdd00>
-<keras.layers.core.Dropout object at 0x7ffa7fecdeb0>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa7fecdeb0>
-<keras.layers.convolutional.Conv2D object at 0x7ffa7fecdf10>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7ffa7fecdf10>
-<keras.layers.normalization.BatchNormalization object at 0x7ffa7fecdf40>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa7fecdf40>
-<keras.layers.core.Dropout object at 0x7ffa7fed3100>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa7fed3100>
+<keras.layers.convolutional.Conv2D object at 0x7f13f8c41820>
+[0, 48, 48, 1] -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7f13f8c41820>
+<keras.layers.normalization.BatchNormalization object at 0x7f13f8c41cd0>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7f13f8c41cd0>
+<keras.layers.core.Dropout object at 0x7f13f8c41e80>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7f13f8c41e80>
+<keras.layers.convolutional.Conv2D object at 0x7f13f8c41ee0>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2D object at 0x7f13f8c41ee0>
+<keras.layers.normalization.BatchNormalization object at 0x7f13f8c41df0>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7f13f8c41df0>
+<keras.layers.core.Dropout object at 0x7f13f8c41f40>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7f13f8c41f40>
 latent space shape is (48, 48, 32) : 300 propositions in total
 building a convolutional decoder
 pool per layer: 1 depth: 2 total pool: 1 H: 48 W: 48 dH: 0 dW: 0
-<keras.layers.core.Reshape object at 0x7ffa7fed3700>
-[0, 48, 48, 32] -> (0, 48, 48, 32) : <keras.layers.core.Reshape object at 0x7ffa7fed3700>
-<keras.layers.convolutional.Conv2DTranspose object at 0x7ffa7fed3730>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2DTranspose object at 0x7ffa7fed3730>
-<keras.layers.normalization.BatchNormalization object at 0x7ffa7fed3910>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7ffa7fed3910>
-<keras.layers.core.Dropout object at 0x7ffa7fed3e50>
-(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7ffa7fed3e50>
-<keras.layers.convolutional.Conv2DTranspose object at 0x7ffa7fed3850>
-(0, 48, 48, 32) -> (0, 48, 48, 1) : <keras.layers.convolutional.Conv2DTranspose object at 0x7ffa7fed3850>
+<keras.layers.core.Reshape object at 0x7f13f8c486d0>
+[0, 48, 48, 32] -> (0, 48, 48, 32) : <keras.layers.core.Reshape object at 0x7f13f8c486d0>
+<keras.layers.convolutional.Conv2DTranspose object at 0x7f13f8c48700>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.convolutional.Conv2DTranspose object at 0x7f13f8c48700>
+<keras.layers.normalization.BatchNormalization object at 0x7f13f8c488e0>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.normalization.BatchNormalization object at 0x7f13f8c488e0>
+<keras.layers.core.Dropout object at 0x7f13f8c48e20>
+(0, 48, 48, 32) -> (0, 48, 48, 32) : <keras.layers.core.Dropout object at 0x7f13f8c48e20>
+<keras.layers.convolutional.Conv2DTranspose object at 0x7f13f8c48820>
+(0, 48, 48, 32) -> (0, 48, 48, 1) : <keras.layers.convolutional.Conv2DTranspose object at 0x7f13f8c48820>
 gggggg00000
 ((48, 48, 1),)
 eff 0
 masked_image.shape
 (?, 48, 48)
-indices_min_x.shape
 (?,)
-indices_max_x.shape
+indices_min_x.shape
 (?,)
 indices_min_y.shape
 (?,)
 indices_max_y.shape
 (?,)
-(?, 48, 48)
+this apply3
+[<latplan.util.layers.MyFlatten object at 0x7f13f8c54220>, <keras.layers.core.Dense object at 0x7f13f8c54250>, <keras.layers.normalization.BatchNormalization object at 0x7f13f8c543a0>]
+Network built
+Building auxiliary networks
+this apply3
+[<latplan.util.layers.MyFlatten object at 0x7f13f8c54220>, <keras.layers.core.Dense object at 0x7f13f8c54250>, <keras.layers.normalization.BatchNormalization object at 0x7f13f8c543a0>]
+Auxiliary network built
+Compiling networks
+there are 1 networks.
+there are 1 optimizers.
+there are 1 losses.
+<function BaseActionMixinAMA4Plus._build_primary.<locals>.theloss at 0x7f13f8c45d30>
+compiling <keras.engine.training.Model object at 0x7f13f63b0070> with <keras_radam.optimizers.RAdam object at 0x7f13f5ecd310>, <function BaseActionMixinAMA4Plus._build_primary.<locals>.loss at 0x7f13f63b1700>.
+Network compiled
+<class 'list'>
+36288
+2
+PREDS
+(2016, 2304)
+PREDS
+(2016, 2304)
+PREDS
+(2016, 2304)

@@ -609,7 +609,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             preds = self.masker.predict([images_array, actions_array])
             print("PREDS")
             print(preds.shape)
-            if epoch == 5:
+            if epoch == 2:
                 plot_image(np.reshape(preds[0], (48,48)),"THEPREDICTION.png")
                 exit()
             # # CLASSIC VERSION

@@ -1972,21 +1972,30 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
 
     def zero_out_regions(self, image_dataset, indices_min_x, indices_max_x, indices_min_y, indices_max_y):
         # Ensure the shape of the indices are as expected
-        indices_min_x = tf.cast(tf.reshape(indices_min_x, [-1]), tf.int32)
-        indices_max_x = tf.cast(tf.reshape(indices_max_x, [-1]), tf.int32)
-        indices_min_y = tf.cast(tf.reshape(indices_min_y, [-1]), tf.int32)
-        indices_max_y = tf.cast(tf.reshape(indices_max_y, [-1]), tf.int32)
+        # indices_min_x = tf.cast(tf.reshape(indices_min_x, [-1]), tf.int32)
+        # indices_max_x = tf.cast(tf.reshape(indices_max_x, [-1]), tf.int32)
+        # indices_min_y = tf.cast(tf.reshape(indices_min_y, [-1]), tf.int32)
+        # indices_max_y = tf.cast(tf.reshape(indices_max_y, [-1]), tf.int32)
+
+        indices_min_x = tf.cast(indices_min_x, tf.int32)
+        indices_max_x = tf.cast(indices_max_x, tf.int32)
+        indices_min_y = tf.cast(indices_min_y, tf.int32)
+        indices_max_y = tf.cast(indices_max_y, tf.int32)
+
 
         def zero_out_single_image(image, min_x, max_x, min_y, max_y):
+
             range_x = tf.range(48, dtype=tf.int32)
             range_y = tf.range(48, dtype=tf.int32)
 
             # Create a mask for the x and y ranges
-            mask_x = tf.logical_or(range_x < min_x, range_x > max_x)
-            mask_y = tf.logical_or(range_y < min_y, range_y > max_y)
+            mask_x = tf.logical_and(range_x > min_x, range_x < max_x)
+            mask_y = tf.logical_and(range_y > min_y, range_y < max_y)
 
             # Apply the mask to zero out the specified regions
-            masked_image = tf.where(tf.logical_and(mask_x[:, None], mask_y), image, tf.zeros_like(image))
+            masked_image = tf.where(tf.logical_and(mask_x[:, None], mask_y), image, tf.ones_like(image))
+            #masked_image = tf.where(tf.logical_and(mask_x, mask_y), image, tf.ones_like(image))
+
             return masked_image
 
         # Apply the operation to each image in the dataset
@@ -2093,93 +2102,66 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         # Create a boolean mask where values are True if they are equal to 1
         
         # Find the index of the first occurrence of True (1) in each example of the batch along the first axis
+        #indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
         indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
+        # IS ACTUALLY FUCKING Y ....
 
+        # x_min .... tu fais: 7
+        indices_min_x = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=2), axis=1)
 
+        flipped_masked_image_first_axis = tf.reverse(masked_image, axis=[1])
+        indices_max_x = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_first_axis, tf.int32), axis=2), axis=1)
+
+        indices_max_x = tf.math.subtract(48 , tf.cast(indices_max_x, dtype=tf.int32))
+
+        print(indices_max_x.shape) # (?,)
+        #exit()
         print("indices_min_x.shape")
         print(indices_min_x.shape)
         #exit()
 
         # The result is a tensor where each element is the minimum index for each example in the batch
         #print
-        flipped_masked_image_first_axis = tf.reverse(masked_image, axis=[1])
-
-        indices_max_x = tf.reduce_max(tf.argmax(tf.cast(flipped_masked_image_first_axis, tf.int32), axis=1), axis=1)
-
-        print("indices_max_x.shape")
-        print(indices_max_x.shape)
+   
 
         # DONC MAINTENANT... min_y et max_y
-        indices_min_y = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=2), axis=1)
+
+        indices_min_y = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=1), axis=1)
         flipped_masked_image_second_axis = tf.reverse(masked_image, axis=[2])
-        indices_max_y = tf.reduce_max(tf.argmax(tf.cast(flipped_masked_image_second_axis, tf.int32), axis=2), axis=1)
+        indices_max_y = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_second_axis, tf.int32), axis=1), axis=1)
+        indices_max_y = tf.math.subtract(48 , tf.cast(indices_max_y, dtype=tf.int32))
 
         print("indices_min_y.shape")
         print(indices_min_y.shape)
-        
-
         print("indices_max_y.shape")
         print(indices_max_y.shape)
             
         indices_min_x = tf.cast(indices_min_x, tf.int32)
         indices_max_x = tf.cast(indices_max_x, tf.int32)
+        
+
+        # indices_min_x = tf.fill(tf.shape(indices_min_x), 5)
+        # indices_max_x = tf.fill(tf.shape(indices_min_x), 20)
+
+        # indices_min_y = tf.fill(tf.shape(indices_min_x), 5)
+        # indices_max_y = tf.fill(tf.shape(indices_min_x), 20)
 
 
-        outppp = self.zero_out_regions(masked_image, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
+        # indices_min_x = tf.constant(20, shape=(400,))
+        # indices_max_x = tf.constant(30, shape=(400,))
 
-        print(outppp.shape)
-
-        exit()
-
-        # 
-        non_zero_mask = tf.not_equal(masked_image, 0)
-
-        non_zero_indices = tf.where(non_zero_mask)
+        # indices_min_y = tf.constant(20, shape=(400,))
+        # indices_max_y = tf.constant(30, shape=(400,))
 
 
-        print("non_zero_indices")
-        print(non_zero_indices.shape)
+        masks_target = self.zero_out_regions(masked_image, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
 
-        # 
-        smallest_x = tf.cast(tf.reduce_min(non_zero_indices[:, 1]), dtype=tf.int32)
-        biggest_x = tf.cast(tf.reduce_max(non_zero_indices[:, 1]), dtype=tf.int32)
-        print("smallest_x.shape")
-        print(smallest_x.shape)
-        exit()
+        #print(masks_target.shape)
+        masks_target = Reshape((2304,))(masks_target)
 
-        smallest_y = tf.cast(tf.reduce_min(non_zero_indices[:, 2]), dtype=tf.int32)
-        biggest_y = tf.cast(tf.reduce_max(non_zero_indices[:, 2]), dtype=tf.int32)
+        # y_mask <=> predictions
+        self.MaskLoss = mean_absolute_error(masks_target, y_mask)
 
-
-
-        shape = (48, 48)
-        image_tensor = tf.zeros(shape, dtype=tf.float32)
-
-        # Create a meshgrid of indices
-        x_indices, y_indices = tf.meshgrid(tf.range(shape[0], dtype=tf.int32), tf.range(shape[1], dtype=tf.int32), indexing='ij')
-
-        # Create boolean masks
-        x_mask = tf.logical_and(x_indices >= smallest_x, x_indices < biggest_x)
-        y_mask = tf.logical_and(y_indices >= smallest_y, y_indices < biggest_y)
-        combined_mask = tf.logical_and(x_mask, y_mask)
-
-        # Update the tensor based on the mask
-        updated_image_tensor = tf.where(combined_mask, tf.ones_like(image_tensor), image_tensor)
-
-
-        # image_tensor = tf.zeros((48, 48), dtype=tf.float32)
-        # indices = [[x, y] for x in range(smallest_x, biggest_x) for y in range(smallest_y, biggest_y)]
-        # updates = tf.ones(len(indices))
-        # #shape_tensor = tf.constant((48, 48))
-        # updated_image_tensor = tf.tensor_scatter_nd_update(image_tensor, indices, updates)
-        print("laputaindetamere")
-        print(updated_image_tensor.shape)
-        exit()
-        updated_image_tensor_reshape = Reshape((2304,))(updated_image_tensor)
-        #exit()
-        #print(themask.shape)
-
-        self.MaskLoss = mean_absolute_error(updated_image_tensor_reshape, y_mask)
         def theloss(*args):
             return self.MaskLoss
 
