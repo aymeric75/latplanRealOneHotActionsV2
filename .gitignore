@@ -5,9 +5,9 @@
 *.valid
 *.pyc
 *.csv
-*.png
-*.pddl
-*.plan
+#*.png
+#*.pddl
+#*.plan
 *.negative
 *.trace
 *.npz
