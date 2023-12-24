@@ -653,7 +653,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 train_data_cache = [[train_data[i] for i in indices_cache[j]] for j in range(len(indices_cache))]
                 train_data_to_cache = [[ train_data_to[i] for i in indices_cache[j]] for j in range(len(indices_cache))]
                 
-                print("shape train_data_cachetrain_data_cache")
+                #print("shape train_data_cachetrain_data_cache")
                 #print(np.array(train_data_cache).shape) # 
 
                 batch_count=0
@@ -683,8 +683,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                     action_input_data = np.array(action_input_data)
                     
                     # print(action_input_data.shape) # (400, 2)
-                    print("x_data.shape")
-                    print(x_data.shape) # (400, 2, 48, 48, 1)
+                    #print("x_data.shape")
+                    #print(x_data.shape) # (400, 2, 48, 48, 1)
 
                     # [ CODE for if one Input ]
                     # action_input_data = np.expand_dims(action_input_data, axis=-1)
@@ -728,7 +728,10 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 clist.on_epoch_end(epoch,logs)
                 if self.nets[0].stop_training:
                     break
-            
+
+                if epoch > 0 and epoch%100:
+                    self.save()
+
             wandb.finish()
             clist.on_train_end()
 

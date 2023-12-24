@@ -1,0 +1,104 @@
+Default float: float32
+{'mode': 'learn', 'track': 'cylinders-4-flat', 'num_examples': 20000, 'aeclass': 'CubeSpaceAE_AMA4Conv', 'comment': 'kltune2', 'hash': 'blocks-full-repr'}
+loaded. picsize: [100 150   3]
+(20000, 2, 30, 45, 3)
+normalized shape: (30, 45, 3) (30, 45, 3)
+typetr0
+<class 'numpy.ndarray'>
+(20000, 2, 30, 45, 3)
+{'test_noise': False, 'test_hard': True, 'train_noise': True, 'train_hard': False, 'dropout_z': False, 'noise': 0.2, 'dropout': 0.2, 'optimizer': 'radam', 'min_temperature': 0.5, 'epoch': 2000, 'gs_annealing_start': 0, 'gs_annealing_end': 1000, 'kl_cycle_start': 2000, 'clipnorm': 0.1, 'batch_size': [400], 'lr': [0.001], 'N': [50, 100, 300], 'zerosuppress': 0.1, 'densify': False, 'max_temperature': [5.0], 'conv_channel': [32], 'conv_channel_increment': [1], 'conv_kernel': [5], 'conv_pooling': [1], 'conv_per_pooling': [1], 'conv_depth': [3], 'fc_width': [100], 'fc_depth': [2], 'A': [6000], 'aae_activation': ['relu'], 'aae_width': [1000], 'aae_depth': [2], 'eff_regularizer': [None], 'beta_d': [1, 10, 100, 1000, 10000], 'beta_z': [1, 10], 'output': 'GaussianOutput(sigma=0.1)'}
+samples/blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2/logs/blocks-full-repr
+MEAN !!!
+
+thetassssk
+blocks
+<function blocks at 0x7fb9e91bd700>
+blockyblock
+Namespace(aeclass='CubeSpaceAE_AMA4Conv', comment='kltune2', hash='blocks-full-repr', mode='learn', num_examples=20000, track='cylinders-4-flat')
+24
+['samples', 'images', 'all_descs', 'all_relations', 'images_mean', 'images_var', 'coords_mean', 'coords_var', 'picsize', 'patch_shape', 'num_samples_per_state', 'lol', 'transitions', 'all_infos']
+okk
+(4, 1, 30, 45, 3)
+clears:
+[1, 2]
+
+xAboveY:
+[[2, 0]]
+
+behind:
+[[], [], []]
+
+front:
+[[], [], []]
+
+left:
+[[], [0, 2], []]
+
+right:
+[[1], [], [1]]
+all_transitions_idx
+[[0 1]
+ [2 3]]
+[[0 1]
+ [2 3]]
+0
+1
+ici
+[[[[0.29412 0.29412 0.29412]
+   [0.27843 0.27843 0.27843]
+   [0.28235 0.28235 0.28235]
+   ...
+   [0.27451 0.27451 0.27451]
+   [0.27843 0.27843 0.27843]
+   [0.25882 0.25882 0.25882]]
+
+  [[0.28235 0.28235 0.28235]
+   [0.27451 0.27451 0.27451]
+   [0.28235 0.28235 0.28235]
+   ...
+   [0.28235 0.28235 0.28235]
+   [0.27843 0.27843 0.27843]
+   [0.27059 0.27059 0.27059]]
+
+  [[0.29804 0.29804 0.29804]
+   [0.29020 0.29020 0.29020]
+   [0.30588 0.30588 0.30588]
+   ...
+   [0.29020 0.29020 0.29020]
+   [0.28235 0.28235 0.28235]
+   [0.27451 0.27451 0.27451]]
+
+  ...
+
+  [[0.39216 0.39608 0.39216]
+   [0.39216 0.38824 0.38824]
+   [0.39608 0.39608 0.39608]
+   ...
+   [0.52549 0.51765 0.50196]
+   [0.51765 0.50980 0.49804]
+   [0.50588 0.50196 0.48627]]
+
+  [[0.39608 0.39608 0.39216]
+   [0.39608 0.39608 0.39216]
+   [0.40000 0.40392 0.40000]
+   ...
+   [0.51373 0.50588 0.49412]
+   [0.50980 0.50196 0.49020]
+   [0.50196 0.49412 0.48235]]
+
+  [[0.39216 0.38824 0.38824]
+   [0.39216 0.39216 0.38824]
+   [0.39608 0.39608 0.39608]
+   ...
+   [0.50196 0.49804 0.48627]
+   [0.49804 0.49020 0.47843]
+   [0.49412 0.48627 0.47451]]]]
+hello
+[{'clears': [1, 2], 'xAboveY': [[2, 0]]}
+ {'clears': [0, 2], 'xAboveY': [[2, 1]]}]
+all_relations
+[{'behind': [[], [], []], 'front': [[], [], []], 'left': [[], [0, 2], []], 'right': [[1], [], [1]]}
+ {'behind': [[], [], []], 'front': [[], [], []], 'left': [[], [0], [0]], 'right': [[1, 2], [], []]}
+ {'behind': [[], [], []], 'front': [[], [], []], 'left': [[], [0], [0]], 'right': [[1, 2], [], []]}
+ {'behind': [[], [], []], 'front': [[], [], []], 'left': [[], [], []], 'right': [[], [], []]}]
+[[[2, 0]], [[2, 1]], [[2, 1]], [[0, 1], [0, 2], [2, 1]]]

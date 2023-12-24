@@ -30,10 +30,10 @@ def output_shape(layers,input_shape):
 
 class EncoderDecoderMixin:
     def _build_around(self,state_input_shape):
-        #state_input_shape = (48, 48, 1)
+        state_input_shape = (48, 48, 1)
         #state_input_shape = (5, 36, 3)
         #state_input_shape = (3, 36, 3)
-        state_input_shape = (4, 16, 3)
+        #state_input_shape = (4, 16, 3)
         self.output = eval(self.parameters["output"])
         self.output.parameters = self.parameters
         if hasattr(self.output, "update"):

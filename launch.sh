@@ -3,7 +3,7 @@
 # ###############################
 # ## BLOCKSWORLD
 
-# exec 1>myblocks_lol.out 2>myblocks_lol.err
+# exec 1>blocks-full-repr.out 2>blocks-full-repr.err
 
 # task="blocks"
 # type="cylinders-4-flat"
@@ -17,7 +17,7 @@
 # after_sample="blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2"
 # pb_subdir="prob-cylinders-4"
 
-# conf_folder="05-06T11:28:54.877"
+# conf_folder="blocks-full-repr"
 # #conf_folder="05-06T11:21:55.052SEED1INVSDIFFSEED"
 # #conf_folder="05-06T11:21:55.052SEED1INVSSAMESEED"
 # #conf_folder="05-06T11:21:55.052SEED1"
@@ -52,7 +52,7 @@
 #################
 ## HANOI
 
-exec 1>hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack.out 2>hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack.err
+exec 1>hanoi-4-4-TEST-GREY.out 2>hanoi-4-4-TEST-GREY.err
 
 # hanoi 5 9
 
@@ -69,7 +69,7 @@ baselabel="mnist_"$suffix
 after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
 #pb_subdir="puzzle-mnist-3-3"
 
-conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack"
+conf_folder="hanoi-4-4-with_prering-test-grey"
 
 
 
@@ -77,7 +77,7 @@ conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack"
 # #################
 # ## PUZZLE MNIST
 
-# exec 1>neat-sweep-7CustomDatasetMoreDenseMoreFrozenSAEMoreBeta_aAndother.out 2>neat-sweep-7CustomDatasetMoreDenseMoreFrozenSAEMoreBeta_aAndother.err
+# exec 1>8-mnist-one-action-really-all-examples-Beta_a10k.out 2>8-mnist-one-action-really-all-examples-Beta_a10k.err
 
 
 # task="puzzle"
@@ -93,10 +93,11 @@ conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack"
 # after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
 # pb_subdir="puzzle-mnist-3-3"
 
-# conf_folder="neat-sweep-7CustomDatasetMoreDenseMoreFrozenSAEMoreBeta_aAndother"
+# #conf_folder="8-mnist-one-action"
+# conf_folder="8-mnist-one-action-really-all-examples-Beta_a10k"
 
 
-##############################################
+#############################################
 
 pwdd=$(pwd)
 

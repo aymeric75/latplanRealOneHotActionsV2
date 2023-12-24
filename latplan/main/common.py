@@ -249,7 +249,6 @@ def run(path,transitions,extra=None):
     print("typetr0")
     print(type(transitions))
     print(transitions.shape)
-    print("theparameters0000000000000000")
     print(theparameters)
     transitionss = transitions
     
@@ -273,7 +272,7 @@ def run(path,transitions,extra=None):
     #print(parameters["mean"])
     print()
     #print(len(parameters["mean"]))
-    print(np.array(parameters["mean"]).shape) # (1, 4, 16, 3)
+    #print(np.array(parameters["mean"]).shape) # (1, 4, 16, 3)
     # (4, 16, 3)
 
     #print(np.array(parameters["mean"][0]).shape)
@@ -304,7 +303,7 @@ def run(path,transitions,extra=None):
         print(args.towers)
         print(args.num_examples)
         from genHanoi import return_hanoi_transitions_and_actions
-        transitions, actions_transitions = return_hanoi_transitions_and_actions(args, parameters, version="with_prering_and_sucring_and_stack")
+        transitions, actions_transitions = return_hanoi_transitions_and_actions(args, parameters, version="with_pddl_constraints")
         #print(transitions)
         #exit()
 
@@ -329,20 +328,22 @@ def run(path,transitions,extra=None):
         exit()
 
 
-    # for hh in range(10, 20):
+
+    for hh in range(10, 14):
 
 
-    #     print("acccc")
-    #     print(actions_transitions[hh])
-    #     print(np.where(actions_transitions[hh] == 1))
-    #     #plt.imshow(transitions[10][0],interpolation='nearest',cmap='gray',)
-    #     plt.imshow(transitions[hh][0])
-    #     plt.savefig("hanoiPRE"+str(hh)+".png")
+        print("acccc")
+        print(actions_transitions[hh])
+        print(np.where(actions_transitions[hh] == 1))
+        #plt.imshow(transitions[10][0],interpolation='nearest',cmap='gray',)
+        plt.imshow(transitions[hh][0])
+        plt.savefig("HANOIPRE"+str(hh)+".png")
 
-    #     plt.imshow(transitions[hh][1])
-    #     plt.savefig("hanoiSUCC"+str(hh)+".png")
+        plt.imshow(transitions[hh][1])
+        plt.savefig("HANOISUCC"+str(hh)+".png")
 
 
+    exit()
     # print("typetr1")
     # print(type(transitions))
     # print(transitions.shape)
@@ -436,18 +437,17 @@ def run(path,transitions,extra=None):
             parameters["beta_d"] = config.beta_d
             parameters["beta_z"] = config.beta_z
             parameters["N"] = config.N
+
             #parameters["beta_a_recons"] = config.beta_a_recons
             #parameters["beta_ama_recons"] = config.beta_ama_recons
             #parameters["aae_width"] = config.aae_width
             # parameters["dropout"] = config.dropout
-            
             # parameters["A"] = 24
             # parameters["beta_d"] = 1000
             # parameters["beta_z"] = 10
-
             # parameters["beta_a_recons"] = 1
-
             # parameters["N"] = 300
+
             parameters["epoch"] = 1200
             parameters["time_start"] = args.hash
             task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 
@@ -522,7 +522,7 @@ def run(path,transitions,extra=None):
         exit()
 
     if 'regen_aux' in args.mode:
-        print("tttttrrr")
+        
         print(transitionss.shape) # (5000, 2, 4, 16, 3)
 
         mean, std = normalize_transitions(transitionss[:,0,:,:,:],transitionss[:,1,:,:,:])
@@ -530,8 +530,6 @@ def run(path,transitions,extra=None):
         #normalize_transitions
         print("MEAAAAN")
         print(mean)
-        exit()
-
         # with open(os.path.join(path_to_json,"aux.json"), "w") as f:
         #     json.dump({"parameters": parameters}, f)
 
@@ -602,7 +600,7 @@ def run(path,transitions,extra=None):
         
         wandb.login(key="2eec5f6bab880cdbda5c825881bbd45b4b3819d9")
 
-        with wandb.init(project="my-Latplan", group="SinglerunsHanoi", name="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack", resume=False):
+        with wandb.init(project="my-Latplan", group="Singleruns", name="8-mnist-one-action-really-all-examples-Beta_a10k-RE", resume=False):
             
             parameters["load_sae_weights"] = False
             parameters["do_sweep"] = False
@@ -615,6 +613,8 @@ def run(path,transitions,extra=None):
             # parameters["dropout"] = 0
             parameters["use_wandb"] = True
             
+            parameters["beta_a_recons"] = 10000
+
             config = wandb.config
             path = path_to_json
             task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 

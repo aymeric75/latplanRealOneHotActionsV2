@@ -40,6 +40,18 @@ def generate(name, ics, gcs, render_fn):
                 subprocess.call(["mv",d,d+"_old_"+datetime.datetime.today().isoformat()])
             os.makedirs(d)
             print(d)
+            # print("laaa")
+            # print(type(init))
+            # print(init.shape) # 48, 48
+            # print(init[15:35][5:])
+
+            d = "/workspace/latplanRealOneHotActionsV2/problem-generators/"
+
+
+            init = ((init - init.min()) * (1/(init.max() - init.min()) * 255)).astype('uint8')
+            goal = ((goal - goal.min()) * (1/(goal.max() - goal.min()) * 255)).astype('uint8')
+            
+
             imageio.imsave(os.path.join(d,"init.png"),init)
             imageio.imsave(os.path.join(d,"goal.png"),goal)
 
@@ -49,6 +61,8 @@ def generate(name, ics, gcs, render_fn):
 # puzzle domain where the goal state is a completed puzzle
 def puzzle(type='mnist', width=3, height=3):
     p = importlib.import_module('latplan.puzzles.puzzle_{}'.format(type))
+    print(p)
+    #exit()
     p.setup()
     def successor_fn(config):
         r = p.successors(config,width,height)
@@ -61,8 +75,18 @@ def puzzle(type='mnist', width=3, height=3):
     goal = goal_state()
     init_candidates = untuple(dijkstra(goal, steps, successor_fn))
     ics = reservoir_sampling(init_candidates, instances)
+    
+
     gcs = [ goal for i in range(len(ics))] # note: not range(instances), because ics may be shorter depending on search depth
-    generate("-".join(["puzzle",type,str(width),str(height)]), ics, gcs, lambda configs: p.generate(np.array(configs),width,height))
+
+    print(ics)
+    
+    ics = [ (7, 2, 5, 4, 3, 1, 6, 0, 8) ]
+
+    gcs = [ (7, 2, 5, 4, 0, 1, 6, 3, 8) ]
+
+    generate("-".join(["puzzle",type,str(width),str(height)]), ics, gcs, lambda configs: p.generate(np.array(configs),width,height, custom=True))
+    #generate("-".join(["puzzle",type,str(width),str(height)]), ics, gcs, lambda configs: p.generate(np.array(configs),width,height))
 
 # puzzle domain where the goal state is random
 def puzzle_random_goal(type='mnist', width=3, height=3):

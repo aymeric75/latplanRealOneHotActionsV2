@@ -2040,7 +2040,8 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         x0y3 = _rec(x_pre,y_pre_aae)
         x1y2 = _rec(x_suc,y_suc_aae)
 
-        self.parameters["beta_a_recons"] = 1
+        self.parameters["beta_a_recons"] = 10000
+        
 
         ama3_forward_loss1  = self.parameters["beta_z"] * kl_z0 + x0y0 + kl_a_z0 + self.parameters["beta_d"] * kl_z1z2 + x1y1
         ama3_forward_loss2  = self.parameters["beta_z"] * kl_z0 + x0y0 + kl_a_z0 + self.parameters["beta_a_recons"] * x1y2
@@ -2083,6 +2084,10 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         #self.net = Model(x, y_aae)
         self.net = Model(inputs=[x, action_input], outputs=y_aae)
        
+        # AE takes as input x, and the action_input as well
+        # BUT outputs y_mask
+        #self.masker = Model()
+
         self.encoder     = Model(x, z) # note : directly through the encoder, not AAE
         self.autoencoder = Model(x, y) # note : directly through the decoder, not AAE
 

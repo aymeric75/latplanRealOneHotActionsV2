@@ -5,25 +5,25 @@ pwdd=$(pwd)
 
 
 
-# ##################
-# #  BLOCKSWORLD   #
-# ##################
+##################
+#  BLOCKSWORLD   #
+##################
 
-# exec 1>myblocks_MAKESTATSTEST.out 2>myblocks_MAKESTATSTEST.err
+exec 1>BLOCKSWORLD-MAKEPLANS.out 2>BLOCKSWORLD-MAKEPLANS.err
 
-# task="blocks"
-# type="cylinders-4-flat"
-# width_height=""
-# nb_examples="20000"
-# suffix="without" # = without author's weight, no noisy test init/goal
-# baselabel="blocks_"$suffix
-# after_sample="blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2"
-# pb_subdir="prob-cylinders-4"
-# conf_folder="06-03T07:41:05.048"
-# label="blocks_877"
+task="blocks"
+type="cylinders-4-flat"
+width_height=""
+nb_examples="20000"
+suffix="without" # = without author's weight, no noisy test init/goal
+baselabel="blocks_"$suffix
+after_sample="blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2"
+pb_subdir="prob-cylinders-4"
+conf_folder="05-06T11:28:54.877"
+label="blocks_877"
 
-# domains_dirs=samples/$after_sample/gridAll/logs
-# probs_subdir="prob-cylinders-4"
+domains_dirs=samples/$after_sample/logs
+probs_subdir="prob-cylinders-4"
 
 
 
@@ -31,7 +31,7 @@ pwdd=$(pwd)
 # ## PUZZLE MNIST
 
 
-# exec 1>49-makeplans.out 2>49-makeplans.err
+# exec 1>8-mnist-one-action-really-all-examples-Beta_a10k-TEST-makeplans.out 2>8-mnist-one-action-really-all-examples-Beta_a10k-TEST-makeplans.err
 
 # task="puzzle"
 # type="mnist"
@@ -46,7 +46,7 @@ pwdd=$(pwd)
 # after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
 # pb_subdir="puzzle-mnist-3-3"
 
-# conf_folder="49"
+# conf_folder="8-mnist-one-action-really-all-examples-Beta_a10k-TEST"
 # domains_dirs=samples/$after_sample/logs
 
 
@@ -56,36 +56,36 @@ pwdd=$(pwd)
 
 
 
-#################
-## HANOI
+# #################
+# ## HANOI
 
-#exec 1>hanoi-3-9-makeplans.out 2>hanoi-3-9-makeplans.err
-exec 1>hanoi-4-4-makeplans.out 2>hanoi-4-4-makeplans.err
+# #exec 1>hanoi-3-9-makeplans.out 2>hanoi-3-9-makeplans.err
+# exec 1>hanoi-4-4-makeplans.out 2>hanoi-4-4-makeplans.err
 
-# hanoi 5 9
+# # hanoi 5 9
 
-task="hanoi"
-#type="mnist"
-width_height="4 4"
-#width_height="3 9"
-nb_examples="5000"
-#suffix="with" # = with author's weight, no noisy test init/goal
-suffix="without" # = without author's weight, no noisy test init/goal
-# suffix="noisywith"
-# suffix="noisywithout"
-baselabel="mnist_"$suffix
-after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
-#after_sample="hanoi_3_9_5000_CubeSpaceAE_AMA4Conv"
-pb_subdir="hanoi-4-4"
-#pb_subdir="hanoi-3-9"
+# task="hanoi"
+# #type="mnist"
+# width_height="4 4"
+# #width_height="3 9"
+# nb_examples="5000"
+# #suffix="with" # = with author's weight, no noisy test init/goal
+# suffix="without" # = without author's weight, no noisy test init/goal
+# # suffix="noisywith"
+# # suffix="noisywithout"
+# baselabel="mnist_"$suffix
+# after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
+# #after_sample="hanoi_3_9_5000_CubeSpaceAE_AMA4Conv"
+# pb_subdir="hanoi-4-4"
+# #pb_subdir="hanoi-3-9"
 
-conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack"
-#conf_folder="hanoi-test"
+# conf_folder="hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-FULL-REPR"
+# #conf_folder="hanoi-test"
 
-domains_dirs=samples/$after_sample/logs
+# domains_dirs=samples/$after_sample/logs
 
-probs_subdir="hanoi-4-4"
-#probs_subdir="hanoi-3-9"
+# probs_subdir="hanoi-4-4"
+# #probs_subdir="hanoi-3-9"
 
 
 
@@ -105,10 +105,10 @@ probs_subdir="hanoi-4-4"
 # ./train_kltune.py inspect_latent $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
 # exit 0
 
-# # ## do the report
+# ## do the report
 
-# ./train_kltune.py report $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
-# exit 0
+./train_kltune.py report $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
+exit 0
 
 # ## apply_actions
 
@@ -156,14 +156,14 @@ probs_subdir="hanoi-4-4"
 #     fi
 # done
 
-# exit 0
+# # exit 0
 
 
 # # 2) Now loop over the configuration folders (in samples/soko.../grid1/logs/), 
 # ## but this time generate the domain.pddl
 # for dir in $domains_dirs/*/
 # do
-#     if [[ "$(basename $dir)" == "hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack" ]]; then
+#     if [[ "$(basename $dir)" == "8-mnist-one-action-really-all-examples-Beta_a10k-TEST" ]]; then
 #         current_dir=$(basename $dir)
 #         echo $current_dir
 
@@ -287,7 +287,7 @@ probs_subdir="hanoi-4-4"
 for dir in $domains_dirs/*/
 do
     echo "nouveau"
-    if [[ "$(basename $dir)" == "hanoi-4-4-radiant-sweep-15-ReviewedACTIONS-Stack" ]]; then
+    if [[ "$(basename $dir)" == "8-mnist-one-action-really-all-examples-Beta_a10k-TEST" ]]; then
         echo ${dir}domain.pddl
         echo $probs_subdir
         
