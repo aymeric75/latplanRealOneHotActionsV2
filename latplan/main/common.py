@@ -343,7 +343,6 @@ def run(path,transitions,extra=None):
         plt.savefig("HANOISUCC"+str(hh)+".png")
 
 
-    exit()
     # print("typetr1")
     # print(type(transitions))
     # print(transitions.shape)
@@ -598,27 +597,28 @@ def run(path,transitions,extra=None):
           
         }
         
-        wandb.login(key="2eec5f6bab880cdbda5c825881bbd45b4b3819d9")
+        # wandb.login(key="2eec5f6bab880cdbda5c825881bbd45b4b3819d9")
 
-        with wandb.init(project="my-Latplan", group="Singleruns", name="8-mnist-one-action-really-all-examples-Beta_a10k-RE", resume=False):
+        # with wandb.init(project="my-Latplan", group="Singleruns", name="8-mnist-one-action-really-all-examples-Beta_a10k-RE", resume=False):
             
-            parameters["load_sae_weights"] = False
-            parameters["do_sweep"] = False
-            # parameters["N"] = 300
-            # parameters["beta_d"] = 1000
-            #parameters["beta_a_recons"] = 10
-            # parameters["beta_z"] = 10
-            parameters["epoch"] = 2000
-            # parameters["aae_width"] = 100
-            # parameters["dropout"] = 0
-            parameters["use_wandb"] = True
+        #     parameters["load_sae_weights"] = False
+        #     parameters["do_sweep"] = False
+        #     # parameters["N"] = 300
+        #     # parameters["beta_d"] = 1000
+        #     #parameters["beta_a_recons"] = 10
+        #     # parameters["beta_z"] = 10
+        #     parameters["epoch"] = 2000
+        #     # parameters["aae_width"] = 100
+        #     # parameters["dropout"] = 0
+        #     parameters["use_wandb"] = True
             
-            parameters["beta_a_recons"] = 10000
+        #     parameters["beta_a_recons"] = 10000
 
-            config = wandb.config
-            path = path_to_json
-            task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 
-            task()
+        #     config = wandb.config
+        parameters["epoch"] = 2000
+        path = path_to_json
+        task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 
+        task()
 
 
 

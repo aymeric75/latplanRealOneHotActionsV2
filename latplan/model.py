@@ -7,6 +7,8 @@ Model classes for latplan.
 import json
 import numpy as np
 from keras.layers import *
+from keras.losses import mean_absolute_error
+
 from keras.backend import slice
 from keras.layers.normalization import BatchNormalization as BN
 from keras.models import Model
@@ -27,6 +29,9 @@ from .mixins.encoder_decoder import *
 from .mixins.locality        import *
 from .mixins.output          import *
 from .network                import Network
+
+
+from keras.layers import Conv2D, MaxPooling2D, Conv2DTranspose
 
 # Style guide
 # * Each section is divided by 3 newlines
@@ -1939,6 +1944,77 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         return loss
 
 
+    def mask_layers(self):
+
+        return Sequential([
+            Dense(32, activation='relu'),
+            Dense(2304)
+        ])
+
+        # encoded = Dense(32, activation='relu')(concatenated)
+
+        # decoded = Dense(2304)(encoded)
+
+        # return decoded
+        
+        #
+        # from a 48x48 image ===> to 2304 vector
+        # + concatenate the 24 vector 
+
+        # this GIVES the INPUT vector
+
+        # then to a Dense of size 32 THEN another Dense of size 2304
+        # THEN the loss you know what to do 
+
+
+
+
+
+    def zero_out_regions(self, image_dataset, indices_min_x, indices_max_x, indices_min_y, indices_max_y):
+        # Ensure the shape of the indices are as expected
+        indices_min_x = tf.cast(tf.reshape(indices_min_x, [-1]), tf.int32)
+        indices_max_x = tf.cast(tf.reshape(indices_max_x, [-1]), tf.int32)
+        indices_min_y = tf.cast(tf.reshape(indices_min_y, [-1]), tf.int32)
+        indices_max_y = tf.cast(tf.reshape(indices_max_y, [-1]), tf.int32)
+
+        def zero_out_single_image(image, min_x, max_x, min_y, max_y):
+            range_x = tf.range(48, dtype=tf.int32)
+            range_y = tf.range(48, dtype=tf.int32)
+
+            # Create a mask for the x and y ranges
+            mask_x = tf.logical_or(range_x < min_x, range_x > max_x)
+            mask_y = tf.logical_or(range_y < min_y, range_y > max_y)
+
+            # Apply the mask to zero out the specified regions
+            masked_image = tf.where(tf.logical_and(mask_x[:, None], mask_y), image, tf.zeros_like(image))
+            return masked_image
+
+        # Apply the operation to each image in the dataset
+        zeroed_out_images = tf.map_fn(lambda x: zero_out_single_image(x[0], x[1], x[2], x[3], x[4]), 
+                                    (image_dataset, indices_min_x, indices_max_x, indices_min_y, indices_max_y), 
+                                    dtype=tf.float32)
+
+        return zeroed_out_images
+
+    # Example usage
+    # image_dataset = ...  # Your image dataset tensor
+    # indices_min_x = ...  # Your indices_min_x tensor
+    # indices_max_x = ...  # Your indices_max_x tensor
+    # indices_min_y = ...  # Your indices_min_y tensor
+    # indices_max_y = ...  # Your indices_max_y tensor
+
+    # zeroed_out_dataset = zero_out_regions(image_dataset, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
+
+
+
+
+
+
+
+
+
+
+
 
 
     def _build_primary(self, input_shape):
@@ -1947,17 +2023,170 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         # print(input_shape) # (48, 48, 1)
         #input_shape = (5, 36, 3)
 
-        x = Input(shape=(2,*input_shape))
+        x = Input(shape=(2,*input_shape)) # shape is (?, 2, 48, 48 )
+        action_input = Input(shape=(self.parameters["A"],)) # shape is # (? ,24)
 
-        print("uhuhihh")
-        print(x.shape) # (?, 2, 4, 16, 3)
+        #first_images = x[:, 0, :, :] # shape is (?, 48, 48, 1)
+        first_images = Lambda(lambda x: x[:, 0, :, :], name = "Lambda_0")(x)
+        first_image_reshaped = Reshape((48, 48))(first_images) # shape is (?, 48, 48)
+        flattened_first_image = Reshape((2304,))(first_image_reshaped) # shape is (?, 2304)
+        concatenated_tensor = concatenate([flattened_first_image, action_input], axis=-1) # shape is (?, 2328)
+
+        layerss = [
+        # Encoder
+        Conv2D(32, (3, 3), activation="relu", padding="same"),
+        MaxPooling2D((2, 2), padding="same"),
+        Conv2D(32, (3, 3), activation="relu", padding="same"),
+        MaxPooling2D((2, 2), padding="same"),
+        # Decoder
+        Conv2DTranspose(32, (3, 3), strides=2, activation="relu", padding="same"),
+        Conv2DTranspose(32, (3, 3), strides=2, activation="relu", padding="same"),
+        Conv2D(1, (3, 3), activation="sigmoid", padding="same"),
+        ]
 
 
+        # y_mask = Sequential(
+        #     layerss
+        # )(concatenated_tensor)
 
-        action_input = Input(shape=(self.parameters["A"],))
-        # print("action_inputaction_input") # (? ,24)
-        # print(action_input.shape)
+        y_mask = Sequential([
+            Dense(64, activation='relu'),
+            #Dense(32, activation='relu'),
+            Dense(2304)
+        ])(concatenated_tensor)
+
+        #y_mask = self.mask_layers()(concatenated_tensor)
+
+        second_images = x[:, 1, :, :]
+        second_images_reshaped = Reshape((48, 48))(second_images)
+        flattened_second_images = Reshape((2304,))(second_images_reshaped)
+
         
+        # print(y_mask)
+        # print(flattened_second_images)
+
+        # NO NO NO, instead of flattened_second_images, you should take
+        #
+        #   DIFF (first_images, second_images) where diff is ONE, the rest is 0
+        # 
+        #       
+        #
+        #
+
+        # Compare elements
+        elements_equal = tf.equal(flattened_second_images, flattened_first_image)
+
+        # Convert boolean tensor to 0s and 1s
+        themask = tf.cast(tf.logical_not(elements_equal), tf.float32)
+
+        # si (48, 48)
+        #               sur axis=0 (x), prends le + petit "x" où valeur est diff de 0 (min_x)
+        #                                   prends le + grand "x" où valeur est diff de 0 (max_x)
+        #                                       IDEM pour "y"
+        #                           ENSUITE tu mets tout à 1 là entre min_x < i < max_x, et j stuff
+        
+        masked_image = Reshape((48, 48))(themask)
+
+        print("masked_image.shape")
+        print(masked_image.shape)
+
+        # Create a boolean mask where values are True if they are equal to 1
+        
+        # Find the index of the first occurrence of True (1) in each example of the batch along the first axis
+        indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
+
+
+        print("indices_min_x.shape")
+        print(indices_min_x.shape)
+        #exit()
+
+        # The result is a tensor where each element is the minimum index for each example in the batch
+        #print
+        flipped_masked_image_first_axis = tf.reverse(masked_image, axis=[1])
+
+        indices_max_x = tf.reduce_max(tf.argmax(tf.cast(flipped_masked_image_first_axis, tf.int32), axis=1), axis=1)
+
+        print("indices_max_x.shape")
+        print(indices_max_x.shape)
+
+        # DONC MAINTENANT... min_y et max_y
+        indices_min_y = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=2), axis=1)
+        flipped_masked_image_second_axis = tf.reverse(masked_image, axis=[2])
+        indices_max_y = tf.reduce_max(tf.argmax(tf.cast(flipped_masked_image_second_axis, tf.int32), axis=2), axis=1)
+
+        print("indices_min_y.shape")
+        print(indices_min_y.shape)
+        
+
+        print("indices_max_y.shape")
+        print(indices_max_y.shape)
+            
+        indices_min_x = tf.cast(indices_min_x, tf.int32)
+        indices_max_x = tf.cast(indices_max_x, tf.int32)
+
+
+        outppp = self.zero_out_regions(masked_image, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
+
+        print(outppp.shape)
+
+        exit()
+
+        # 
+        non_zero_mask = tf.not_equal(masked_image, 0)
+
+        non_zero_indices = tf.where(non_zero_mask)
+
+
+        print("non_zero_indices")
+        print(non_zero_indices.shape)
+
+        # 
+        smallest_x = tf.cast(tf.reduce_min(non_zero_indices[:, 1]), dtype=tf.int32)
+        biggest_x = tf.cast(tf.reduce_max(non_zero_indices[:, 1]), dtype=tf.int32)
+        print("smallest_x.shape")
+        print(smallest_x.shape)
+        exit()
+
+        smallest_y = tf.cast(tf.reduce_min(non_zero_indices[:, 2]), dtype=tf.int32)
+        biggest_y = tf.cast(tf.reduce_max(non_zero_indices[:, 2]), dtype=tf.int32)
+
+
+
+        shape = (48, 48)
+        image_tensor = tf.zeros(shape, dtype=tf.float32)
+
+        # Create a meshgrid of indices
+        x_indices, y_indices = tf.meshgrid(tf.range(shape[0], dtype=tf.int32), tf.range(shape[1], dtype=tf.int32), indexing='ij')
+
+        # Create boolean masks
+        x_mask = tf.logical_and(x_indices >= smallest_x, x_indices < biggest_x)
+        y_mask = tf.logical_and(y_indices >= smallest_y, y_indices < biggest_y)
+        combined_mask = tf.logical_and(x_mask, y_mask)
+
+        # Update the tensor based on the mask
+        updated_image_tensor = tf.where(combined_mask, tf.ones_like(image_tensor), image_tensor)
+
+
+        # image_tensor = tf.zeros((48, 48), dtype=tf.float32)
+        # indices = [[x, y] for x in range(smallest_x, biggest_x) for y in range(smallest_y, biggest_y)]
+        # updates = tf.ones(len(indices))
+        # #shape_tensor = tf.constant((48, 48))
+        # updated_image_tensor = tf.tensor_scatter_nd_update(image_tensor, indices, updates)
+        print("laputaindetamere")
+        print(updated_image_tensor.shape)
+        exit()
+        updated_image_tensor_reshape = Reshape((2304,))(updated_image_tensor)
+        #exit()
+        #print(themask.shape)
+
+        self.MaskLoss = mean_absolute_error(updated_image_tensor_reshape, y_mask)
+        def theloss(*args):
+            return self.MaskLoss
+
+        self.theloss = theloss
+
+
+        # # Sequential(self.encoder_net)(x)
 
         ###########################################################################
         # [ CODE for if one Input ]
@@ -1967,6 +2196,8 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         # theaction = reshaped_tensor[0, :24]        
         # images_layer = Lambda(lambda x: x[:,:2])(x)
         ###########################################################################
+
+        
 
         _, x_pre, x_suc = dapply(x)
         z, z_pre, z_suc = dapply(x, self._encode)
@@ -2040,7 +2271,7 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         x0y3 = _rec(x_pre,y_pre_aae)
         x1y2 = _rec(x_suc,y_suc_aae)
 
-        self.parameters["beta_a_recons"] = 10000
+        self.parameters["beta_a_recons"] = 1
         
 
         ama3_forward_loss1  = self.parameters["beta_z"] * kl_z0 + x0y0 + kl_a_z0 + self.parameters["beta_d"] * kl_z1z2 + x1y1
@@ -2086,7 +2317,7 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
        
         # AE takes as input x, and the action_input as well
         # BUT outputs y_mask
-        #self.masker = Model()
+        self.masker = Model(inputs=[x, action_input], outputs=y_mask)
 
         self.encoder     = Model(x, z) # note : directly through the encoder, not AAE
         self.autoencoder = Model(x, y) # note : directly through the decoder, not AAE

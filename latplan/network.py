@@ -162,8 +162,10 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         assert len(self.nets) == len(optimizers)
         assert len(self.nets) == len(self.losses)
         for net, o, loss in zip(self.nets, optimizers, self.losses):
+            print(self.theloss)
             print(f"compiling {net} with {o}, {loss}.")
             net.compile(optimizer=o, loss=loss, metrics=self.metrics)
+            self.masker.compile(optimizer=keras.optimizers.Adam(lr=1e-3), loss=self.theloss)
         return
 
     def local(self,path=""):
@@ -363,9 +365,9 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         else:
             # print("traindatashape")
             # print(train_data[0].shape)
-            #input_shape = (2, 48, 48, 1) # Mnist
+            input_shape = (2, 48, 48, 1) # Mnist
 
-            input_shape = (2, 4, 16, 3) # Hanoi
+            #input_shape = (2, 4, 16, 3) # Hanoi
             # exit()
             print("train_data.shapetrain_data.shape")
             print(type(train_data))
@@ -542,6 +544,12 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         self.nets[0].stop_training = False
 
 
+        import matplotlib.pyplot as plt
+        def plot_image(a,name):
+            plt.figure(figsize=(6,6))
+            plt.imshow(a,interpolation='nearest',cmap='gray',)
+            plt.savefig(name)
+
 
         def generate_logs(data, data_to, epoch=0, forwandb=False):
 
@@ -588,11 +596,22 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             # attend (3, 48, 48, 1)
 
             # NEW VERSION
-            evals = self.nets[0].evaluate([images_array, actions_array],
+            # evals = self.nets[0].evaluate([images_array, actions_array],
+            #                         images_array,
+            #                         batch_size=batch_size,
+            #                         verbose=0)
+            evals = self.masker.evaluate([images_array, actions_array],
                                     images_array,
                                     batch_size=batch_size,
                                     verbose=0)
 
+            #
+            preds = self.masker.predict([images_array, actions_array])
+            print("PREDS")
+            print(preds.shape)
+            if epoch == 5:
+                plot_image(np.reshape(preds[0], (48,48)),"THEPREDICTION.png")
+                exit()
             # # CLASSIC VERSION
             # evals = self.nets[0].evaluate(images_array,
             #                 images_array,
@@ -609,7 +628,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             #if forwandb:
             to_send_towandb = logs_net
             to_send_towandb["epoch"] = epoch
-            wandb.log(to_send_towandb)
+            #wandb.log(to_send_towandb)
 
             losses.append(logs_net["loss"])
             logs.update(logs_net)
@@ -636,11 +655,14 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         #             logs["loss"+str(i)] = loss
         #     logs["loss"] = np.sum(losses)
         #     return logs
-
-
+        
         try:
             clist.on_train_begin()
             logs = {}
+            
+            pre_image = None
+            post_image = None
+            the_action = None
 
             # for each epoch
             for epoch in range(start_epoch,start_epoch+epoch):
@@ -661,6 +683,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 # for each batch
                 for train_subdata_cache, train_subdata_to_cache in zip(train_data_cache,train_data_to_cache):
                     #for net,train_subdata_batch_cache,train_subdata_to_batch_cache in zip(self.nets, train_subdata_cache,train_subdata_to_cache):
+
+
 
                     net = self.nets[0]
 
@@ -702,8 +726,17 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                     # (010) (010)
                     # (010) (010)
                     
+
+                    self.masker.train_on_batch([x_data, action_input_data], x_data)
+                    #continue
+
+                    # if batch_count==1:
+                    #     preds = self.masker.predict([x_data, action_input_data])
+                    #     print("PREDS")
+                    #     print(preds.shape)
+                    #plot_image(preds,"THEPREDICTION.png")
                     # action_input_data must be like (400, 24)
-                    net.train_on_batch([x_data, action_input_data], x_data) # NEW VERSION
+                    #net.train_on_batch([x_data, action_input_data], x_data) # NEW VERSION
                     #net.train_on_batch(x_data, x_data) # CLASSIC VERSION OF LATPLAN
                     
                     
@@ -716,7 +749,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 
                     batch_count+=1
 
-
+                
 
                 logs = {}
                 # # CLASSIC VERSION
@@ -729,16 +762,16 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 if self.nets[0].stop_training:
                     break
 
-                if epoch > 0 and epoch%100:
-                    self.save()
+                # if epoch > 0 and epoch%100:
+                #     self.save()
 
-            wandb.finish()
+            #wandb.finish()
             clist.on_train_end()
 
         except KeyboardInterrupt:
             print("learning stopped\n")
         finally:
-            self.save()
+            #self.save()
             self.loaded = True
         return self
 

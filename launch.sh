@@ -49,40 +49,16 @@
 
 
 
-#################
-## HANOI
-
-exec 1>hanoi-4-4-TEST-GREY.out 2>hanoi-4-4-TEST-GREY.err
-
-# hanoi 5 9
-
-task="hanoi"
-#type="mnist"
-width_height="4 4"
-#width_height="4 4"
-nb_examples="5000"
-#suffix="with" # = with author's weight, no noisy test init/goal
-suffix="without" # = without author's weight, no noisy test init/goal
-# suffix="noisywith"
-# suffix="noisywithout"
-baselabel="mnist_"$suffix
-after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
-#pb_subdir="puzzle-mnist-3-3"
-
-conf_folder="hanoi-4-4-with_prering-test-grey"
-
-
-
-
 # #################
-# ## PUZZLE MNIST
+# ## HANOI
 
-# exec 1>8-mnist-one-action-really-all-examples-Beta_a10k.out 2>8-mnist-one-action-really-all-examples-Beta_a10k.err
+# exec 1>hanoi-4-4-TEST-GREY.out 2>hanoi-4-4-TEST-GREY.err
 
+# # hanoi 5 9
 
-# task="puzzle"
-# type="mnist"
-# width_height="3 3"
+# task="hanoi"
+# #type="mnist"
+# width_height="4 4"
 # #width_height="4 4"
 # nb_examples="5000"
 # #suffix="with" # = with author's weight, no noisy test init/goal
@@ -90,11 +66,35 @@ conf_folder="hanoi-4-4-with_prering-test-grey"
 # # suffix="noisywith"
 # # suffix="noisywithout"
 # baselabel="mnist_"$suffix
-# after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
-# pb_subdir="puzzle-mnist-3-3"
+# after_sample="hanoi_4_4_5000_CubeSpaceAE_AMA4Conv"
+# #pb_subdir="puzzle-mnist-3-3"
 
-# #conf_folder="8-mnist-one-action"
-# conf_folder="8-mnist-one-action-really-all-examples-Beta_a10k"
+# conf_folder="hanoi-4-4-with_prering-test-grey"
+
+
+
+
+#################
+## PUZZLE MNIST
+
+exec 1>24ActionsLearnsMask.out 2>24ActionsLearnsMask.err
+
+
+task="puzzle"
+type="mnist"
+width_height="3 3"
+#width_height="4 4"
+nb_examples="5000"
+#suffix="with" # = with author's weight, no noisy test init/goal
+suffix="without" # = without author's weight, no noisy test init/goal
+# suffix="noisywith"
+# suffix="noisywithout"
+baselabel="mnist_"$suffix
+after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
+pb_subdir="puzzle-mnist-3-3"
+
+#conf_folder="8-mnist-one-action"
+conf_folder="24ActionsLearnsMask"
 
 
 #############################################
