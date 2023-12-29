@@ -5,54 +5,54 @@ pwdd=$(pwd)
 
 
 
-##################
-#  BLOCKSWORLD   #
-##################
+# ##################
+# #  BLOCKSWORLD   #
+# ##################
 
-exec 1>BLOCKSWORLD-MAKEPLANS.out 2>BLOCKSWORLD-MAKEPLANS.err
+# exec 1>BLOCKSWORLD-MAKEPLANS.out 2>BLOCKSWORLD-MAKEPLANS.err
 
-task="blocks"
-type="cylinders-4-flat"
-width_height=""
-nb_examples="20000"
-suffix="without" # = without author's weight, no noisy test init/goal
-baselabel="blocks_"$suffix
-after_sample="blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2"
-pb_subdir="prob-cylinders-4"
-conf_folder="05-06T11:28:54.877"
-label="blocks_877"
-
-domains_dirs=samples/$after_sample/logs
-probs_subdir="prob-cylinders-4"
-
-
-
-# #################
-# ## PUZZLE MNIST
-
-
-# exec 1>8-mnist-one-action-really-all-examples-Beta_a10k-TEST-makeplans.out 2>8-mnist-one-action-really-all-examples-Beta_a10k-TEST-makeplans.err
-
-# task="puzzle"
-# type="mnist"
-# width_height="3 3"
-# #width_height="4 4"
-# nb_examples="5000"
-# #suffix="with" # = with author's weight, no noisy test init/goal
+# task="blocks"
+# type="cylinders-4-flat"
+# width_height=""
+# nb_examples="20000"
 # suffix="without" # = without author's weight, no noisy test init/goal
-# # suffix="noisywith"
-# # suffix="noisywithout"
-# baselabel="mnist_"$suffix
-# after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
-# pb_subdir="puzzle-mnist-3-3"
+# baselabel="blocks_"$suffix
+# after_sample="blocks_cylinders-4-flat_20000_CubeSpaceAE_AMA4Conv_kltune2"
+# pb_subdir="prob-cylinders-4"
+# conf_folder="05-06T11:28:54.877"
+# label="blocks_877"
 
-# conf_folder="8-mnist-one-action-really-all-examples-Beta_a10k-TEST"
 # domains_dirs=samples/$after_sample/logs
+# probs_subdir="prob-cylinders-4"
 
 
-# probs_subdir="puzzle-mnist-3-3"
 
-# label=mnist_without_052
+#################
+## PUZZLE MNIST
+
+
+exec 1>24ActionsLearnsMask-500samples-peraction-makeplans.out 2>24ActionsLearnsMask-500samples-peraction-makeplans.err
+
+task="puzzle"
+type="mnist"
+width_height="3 3"
+#width_height="4 4"
+nb_examples="5000"
+#suffix="with" # = with author's weight, no noisy test init/goal
+suffix="without" # = without author's weight, no noisy test init/goal
+# suffix="noisywith"
+# suffix="noisywithout"
+baselabel="mnist_"$suffix
+after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
+pb_subdir="puzzle-mnist-3-3"
+
+conf_folder="24ActionsLearnsMask-500samples-peraction"
+domains_dirs=samples/$after_sample/logs
+
+
+probs_subdir="puzzle-mnist-3-3"
+
+label=mnist_without_052
 
 
 
@@ -105,15 +105,15 @@ probs_subdir="prob-cylinders-4"
 # ./train_kltune.py inspect_latent $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
 # exit 0
 
-# ## do the report
+# # ## do the report
 
-./train_kltune.py report $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
-exit 0
-
-# ## apply_actions
-
-# ./train_kltune.py apply_actions $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
+# ./train_kltune.py report $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
 # exit 0
+
+## apply_actions
+
+./train_kltune.py apply_actions $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $conf_folder
+exit 0
 
 # # # 0) displays the stats regarding mutexes and variables found in a sas file
 # ./train_kltune.py stats $task $type $width_height $nb_examples CubeSpaceAE_AMA4Conv kltune2 --hash $current_dir

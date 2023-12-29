@@ -1801,14 +1801,14 @@ class BaseActionMixinAMA3Plus(UnidirectionalMixin, BaseActionMixin):
 # AMA4+ Space AE : Bidirectional model with correct ELBO #######################
 
 class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
-    def _save(self,path=""):
+    def _save(self,path="", epoch=None):
         # saved separately so that we can switch between loading or not loading it.
         # since the weights are fixed size, loading it with a different input shape causes an error.
-        super()._save(path)
+        super()._save(path, epoch=epoch)
         print("saving additional networks")
         import os.path
-        np.savez_compressed(self.local(os.path.join(path,f"p_a_z0_net.npz")),*self.p_a_z0_net[0].get_weights())
-        np.savez_compressed(self.local(os.path.join(path,f"p_a_z1_net.npz")),*self.p_a_z1_net[0].get_weights())
+        np.savez_compressed(self.local(os.path.join(path,f"p_a_z0_net-{epoch}.npz")),*self.p_a_z0_net[0].get_weights())
+        np.savez_compressed(self.local(os.path.join(path,f"p_a_z1_net-{epoch}.npz")),*self.p_a_z1_net[0].get_weights())
 
     def _load(self,path=""):
         # loaded separately so that we can switch between loading or not loading it.
@@ -2021,6 +2021,12 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
 
 
 
+    
+    def plot_image(self,a,name):
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(6,6))
+        plt.imshow(a,interpolation='nearest',cmap='gray',)
+        plt.savefig(name)
 
 
 
@@ -2035,137 +2041,255 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         x = Input(shape=(2,*input_shape)) # shape is (?, 2, 48, 48 )
         action_input = Input(shape=(self.parameters["A"],)) # shape is # (? ,24)
 
-        #first_images = x[:, 0, :, :] # shape is (?, 48, 48, 1)
+        masks = Input(shape=(48,48,))
+        print("masks.shape ok")
+        print(masks.shape)
+
+        self.output_mask = action_input
+
+        ####### "Modifying" the two images so that ONLY the part of INTEREST STAYS "clear"
+        #######  (the rest is put to 0s)
+
+
+        # ################## CALCULATING THE MASK BETWEEN PRE IMAGE and SUCC IMAGE ############
         first_images = Lambda(lambda x: x[:, 0, :, :], name = "Lambda_0")(x)
         first_image_reshaped = Reshape((48, 48))(first_images) # shape is (?, 48, 48)
-        flattened_first_image = Reshape((2304,))(first_image_reshaped) # shape is (?, 2304)
-        concatenated_tensor = concatenate([flattened_first_image, action_input], axis=-1) # shape is (?, 2328)
-
-        layerss = [
-        # Encoder
-        Conv2D(32, (3, 3), activation="relu", padding="same"),
-        MaxPooling2D((2, 2), padding="same"),
-        Conv2D(32, (3, 3), activation="relu", padding="same"),
-        MaxPooling2D((2, 2), padding="same"),
-        # Decoder
-        Conv2DTranspose(32, (3, 3), strides=2, activation="relu", padding="same"),
-        Conv2DTranspose(32, (3, 3), strides=2, activation="relu", padding="same"),
-        Conv2D(1, (3, 3), activation="sigmoid", padding="same"),
-        ]
 
 
-        # y_mask = Sequential(
-        #     layerss
-        # )(concatenated_tensor)
+        lambda_Multiply = Lambda(lambda inputs: inputs[0]*inputs[1])
+        masked_ = lambda_Multiply([first_image_reshaped, masks])
 
-        y_mask = Sequential([
-            Dense(64, activation='relu'),
-            #Dense(32, activation='relu'),
-            Dense(2304)
-        ])(concatenated_tensor)
 
-        #y_mask = self.mask_layers()(concatenated_tensor)
+        lambda_NOT = Lambda(lambda input: tf.logical_not(input))
 
-        second_images = x[:, 1, :, :]
-        second_images_reshaped = Reshape((48, 48))(second_images)
-        flattened_second_images = Reshape((2304,))(second_images_reshaped)
+        lambda_toBool = Lambda(lambda input: tf.cast(input, dtype=tf.bool))
 
+        masks_bool = lambda_toBool(masks)
+
+        negative_masks = lambda_NOT(masks_bool)
+
+        lambda_toFloat32 = Lambda(lambda input: tf.cast(input, dtype=tf.float32))
+
+        masked_negative = lambda_Multiply([first_image_reshaped, lambda_toFloat32(negative_masks)])
+
+        #flattened_first_image = Reshape((2304,))(first_image_reshaped) # shape is (?, 2304)
+
+        # #second_images = x[:, 1, :, :]
+        # second_images = Lambda(lambda x: x[:, 1, :, :], name = "Lambda_1")(x)
+        # second_images_reshaped = Reshape((48, 48))(second_images)
+        # flattened_second_images = Reshape((2304,))(second_images_reshaped)
+
+        # #elements_equal = tf.equal(flattened_second_images, flattened_first_image)
+
+        # lambda_layer1 = Lambda(lambda inputs: tf.equal(inputs[1], inputs[0]))
+        # elements_equal = lambda_layer1([flattened_first_image, flattened_second_images])
+
+
+        # lambda_layer2 = Lambda(lambda input: tf.cast(tf.logical_not(input), tf.float32))
+        # themask = lambda_layer2(elements_equal)
+
+        # masked_image = Reshape((48, 48))(themask) # Will be 1s where difference, 0s otherwise
+
+        # ################## CALCULATING THE xmin/xmax/ymin/ymax of the MASK ###############
         
-        # print(y_mask)
-        # print(flattened_second_images)
 
-        # NO NO NO, instead of flattened_second_images, you should take
-        #
-        #   DIFF (first_images, second_images) where diff is ONE, the rest is 0
-        # 
-        #       
-        #
-        #
+        # ## VERSION: ANY actions per batch
+        # print(masked_image.shape) # (?, 48, 48)
+        # # xmin, xmax
+        # lambda_reduceMaxAxis2 = Lambda(lambda input: tf.reduce_max(input, axis=2))
+        # maxes_from_axis_one = lambda_reduceMaxAxis2(masked_image) #tf.reduce_max(masked_image, axis=2)
+        # lambda_argxMaxAxis1 = Lambda(lambda input: tf.argmax(input, axis=1))
+        # xmin = lambda_argxMaxAxis1(maxes_from_axis_one)
+        # flipped_axis_one = tf.reverse(maxes_from_axis_one, axis=[1])
+        # xmax = tf.math.subtract(48 , tf.cast(tf.argmax(flipped_axis_one, axis=1), dtype=tf.int32))
 
-        # Compare elements
-        elements_equal = tf.equal(flattened_second_images, flattened_first_image)
+        # # # ymin, ymax
+        # maxes_from_axis_zero = tf.reduce_max(masked_image, axis=1)
+        # ymin = tf.argmax(maxes_from_axis_zero, axis=1)
+        # flipped_axis_zero = tf.reverse(maxes_from_axis_zero, axis=[1])
+        # ymax = tf.math.subtract(48 , tf.cast(tf.argmax(flipped_axis_zero, axis=1), dtype=tf.int32))
 
-        # Convert boolean tensor to 0s and 1s
-        themask = tf.cast(tf.logical_not(elements_equal), tf.float32)
+        # lambda_castInt32 = Lambda(lambda input: tf.cast(input, dtype=tf.int32))
+        # xmin = lambda_castInt32(xmin)
+        # xmax = tf.cast(xmax, dtype=tf.int32)
+        # ymin = tf.cast(ymin, dtype=tf.int32)
+        # ymax = tf.cast(ymax, dtype=tf.int32)
 
-        # si (48, 48)
-        #               sur axis=0 (x), prends le + petit "x" où valeur est diff de 0 (min_x)
-        #                                   prends le + grand "x" où valeur est diff de 0 (max_x)
-        #                                       IDEM pour "y"
-        #                           ENSUITE tu mets tout à 1 là entre min_x < i < max_x, et j stuff
+
+
+        # # Step 1: Expand xmin to match the shape of masked_images
+        # lambda_expandDimsMoinsUn = Lambda(lambda input: tf.expand_dims(input, -1))
+        # xmin_expanded = lambda_expandDimsMoinsUn(xmin)  # Shape becomes (?, 1)
+        # xmin_expanded = lambda_expandDimsMoinsUn(xmin_expanded)  # Shape becomes (?, 1, 1)
+        # lambda_tile = Lambda(lambda input: tf.tile(input, [1, 48, 48]))
+        # xmin_expanded = lambda_tile(xmin_expanded)  # Shape becomes (?, 48, 48)
+
+        # # Step 2: Create a range tensor
+        # lambda_xRange = Lambda(lambda input: tf.range(input))
+        # x_range = lambda_xRange(tf.constant(48))  # Shape (48,)
+        # lambda_reshapeUnUnQuaranteHuit = Lambda(lambda input: tf.reshape(input, (1, 1, 48)))
+        # x_range = lambda_reshapeUnUnQuaranteHuit(x_range)  # Shape becomes (1, 1, 48)
+        # lambda_tile = Lambda(lambda inputs: tf.tile(inputs[0], [tf.shape(inputs[1])[0], 48, 1]))
+        # x_range = lambda_tile([x_range, masked_image])  # Shape becomes (?, 48, 48)
+
+        # # # Step 3: Create the mask
+        # lambda_GreaterOrEqual = Lambda(lambda inputs: tf.greater_equal(inputs[0], inputs[1]))
+        # mask = lambda_GreaterOrEqual([x_range, xmin_expanded])  
+
+        # lambda_toFloat32 = Lambda(lambda input: tf.cast(input, dtype=tf.float32))
+        # mask = lambda_toFloat32(mask)
+
+        # lambda_layerlol = Lambda(lambda inputs: inputs[0]*inputs[1])
+        # #masked_image = masked_image * tf.cast(mask, tf.float32)
+
+        # print("tavu")
+        # print(masked_image)
+        # print(mask)
+
+        # masked_image = lambda_layerlol([masked_image, mask])
+
+        # x_coords, y_coords = tf.meshgrid(tf.range(48, dtype=tf.int32), tf.range(48, dtype=tf.int32))
+
+
+        # # masked_image
+        # print(x_coords.shape) # (48, 48)
+        # print(y_coords.shape) # (48, 48)
+
+
+        # mask_creation_layer = MaskCreationLayer()
+        # thelist = mask_creation_layer([xmin, ymin, xmax, ymax])
+        # outside_masks, inside_masks = thelist[0], thelist[1]
+
+        # #outside_masks, inside_masks = tf.map_fn(create_mask, (xmin, ymin, xmax, ymax), dtype=(tf.float32, tf.float32))
+        # inside_masks = create_mask((xmin, ymin, xmax, ymax))
+        # print("daccord")
+        # #print(outside_masks.shape) # (?, 48, 48)
+        # print(inside_masks.shape) # (48, 48)
+
+        #self.plot_image(inside_masks[0].eval(session=tf.Session()),"inside_mask.png")
+
+        ## VERSION: one action PER batch
+
+        #masked_image = masked_image[0]
+        # # xmin, xmax
+        # maxes_from_axis_one = tf.reduce_max(masked_image, axis=1)
+        # xmin = tf.argmax(maxes_from_axis_one, axis=0)
+        # flipped_axis_one = tf.reverse(maxes_from_axis_one, axis=[0])
+        # xmax = tf.math.subtract(48 , tf.cast(tf.argmax(flipped_axis_one, axis=0), dtype=tf.int32))
+
+        # # # ymin, ymax
+        # maxes_from_axis_zero = tf.reduce_max(masked_image, axis=0)
+        # ymin = tf.argmax(maxes_from_axis_zero, axis=0)
+        # flipped_axis_zero = tf.reverse(maxes_from_axis_zero, axis=[0])
+        # ymax = tf.math.subtract(48 , tf.cast(tf.argmax(flipped_axis_zero, axis=0), dtype=tf.int32))
+
+        # xmin = tf.cast(xmin, dtype=tf.int32)
+        # xmax = tf.cast(xmax, dtype=tf.int32)
+        # ymin = tf.cast(ymin, dtype=tf.int32)
+        # ymax = tf.cast(ymax, dtype=tf.int32)
+
+        # x_coords, y_coords = tf.meshgrid(tf.range(48, dtype=tf.int32), tf.range(48, dtype=tf.int32))
+
+        # # Create the mask
+        # mask_rectangle = tf.logical_and(
+        #     tf.logical_and(x_coords >= xmin, x_coords < xmax),
+        #     tf.logical_and(y_coords >= ymin, y_coords < ymax)
+        # )
+        # #
+
+        # mask_negative_of_rectangle = tf.logical_not(mask_rectangle)
+        # mask_negative_of_rectangle = tf.cast(mask_negative_of_rectangle, tf.float32)
         
-        masked_image = Reshape((48, 48))(themask)
+        # mask_rectangle = tf.cast(mask_rectangle, tf.float32)
+       
 
-        print("masked_image.shape")
-        print(masked_image.shape)
 
-        # Create a boolean mask where values are True if they are equal to 1
+        #####################################################################################
+        ############################ INPUTS for the MASKER MODEL ############################
+        #####################################################################################
+        # #first_images = x[:, 0, :, :] # shape is (?, 48, 48, 1)
+
+        # concatenated_tensor = concatenate([flattened_first_image, action_input], axis=-1) # shape is (?, 2328)
+
+        # y_mask = Sequential([
+        #     Dense(64, activation='relu'),
+        #     #Dense(32, activation='relu'),
+        #     Dense(2304)
+        # ])(concatenated_tensor)
+
+        # #y_mask = self.mask_layers()(concatenated_tensor)
+
+
+        # #
+        # # Compare elements
         
-        # Find the index of the first occurrence of True (1) in each example of the batch along the first axis
-        #indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
-        indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
-        # IS ACTUALLY FUCKING Y ....
 
-        # x_min .... tu fais: 7
-        indices_min_x = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=2), axis=1)
+        # # Convert boolean tensor to 0s and 1s
+        
 
-        flipped_masked_image_first_axis = tf.reverse(masked_image, axis=[1])
-        indices_max_x = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_first_axis, tf.int32), axis=2), axis=1)
+        # # si (48, 48)
+        # #               sur axis=0 (x), prends le + petit "x" où valeur est diff de 0 (min_x)
+        # #                                   prends le + grand "x" où valeur est diff de 0 (max_x)
+        # #                                       IDEM pour "y"
+        # #                           ENSUITE tu mets tout à 1 là entre min_x < i < max_x, et j stuff
+        
 
-        indices_max_x = tf.math.subtract(48 , tf.cast(indices_max_x, dtype=tf.int32))
+        # # masked_image is really the difference
+        
 
-        print(indices_max_x.shape) # (?,)
-        #exit()
-        print("indices_min_x.shape")
-        print(indices_min_x.shape)
-        #exit()
 
-        # The result is a tensor where each element is the minimum index for each example in the batch
-        #print
-   
+        # # Create a boolean mask where values are True if they are equal to 1
+        
+        # # Find the index of the first occurrence of True (1) in each example of the batch along the first axis
+        # #indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
+        # #indices_min_x = tf.reduce_min(tf.argmax(tf.cast(masked_image, tf.int32), axis=1), axis=1)
+        # # IS ACTUALLY FUCKING Y ....
 
-        # DONC MAINTENANT... min_y et max_y
+        # # x_min .... tu fais: 7
+        # indices_min_x = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=2), axis=1)
 
-        indices_min_y = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=1), axis=1)
-        flipped_masked_image_second_axis = tf.reverse(masked_image, axis=[2])
-        indices_max_y = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_second_axis, tf.int32), axis=1), axis=1)
-        indices_max_y = tf.math.subtract(48 , tf.cast(indices_max_y, dtype=tf.int32))
+        # flipped_masked_image_first_axis = tf.reverse(masked_image, axis=[1])
+        # indices_max_x = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_first_axis, tf.int32), axis=2), axis=1)
 
-        print("indices_min_y.shape")
-        print(indices_min_y.shape)
-        print("indices_max_y.shape")
-        print(indices_max_y.shape)
+        # indices_max_x = tf.math.subtract(48 , tf.cast(indices_max_x, dtype=tf.int32))
+
+        # print(indices_max_x.shape) # (?,)
+        # #exit()
+        # print("indices_min_x.shape")
+        # print(indices_min_x.shape)
+        # #exit()
+
+        # indices_min_y = tf.argmax(tf.reduce_max(tf.cast(masked_image, tf.int32), axis=1), axis=1)
+        # flipped_masked_image_second_axis = tf.reverse(masked_image, axis=[2])
+        # indices_max_y = tf.argmax(tf.reduce_max(tf.cast(flipped_masked_image_second_axis, tf.int32), axis=1), axis=1)
+        # indices_max_y = tf.math.subtract(48 , tf.cast(indices_max_y, dtype=tf.int32))
+
             
-        indices_min_x = tf.cast(indices_min_x, tf.int32)
-        indices_max_x = tf.cast(indices_max_x, tf.int32)
+        # indices_min_x = tf.cast(indices_min_x, tf.int32)
+        # indices_max_x = tf.cast(indices_max_x, tf.int32)
         
 
-        # indices_min_x = tf.fill(tf.shape(indices_min_x), 5)
-        # indices_max_x = tf.fill(tf.shape(indices_min_x), 20)
+        # # indices_min_x = tf.fill(tf.shape(indices_min_x), 5)
+        # # indices_max_x = tf.fill(tf.shape(indices_min_x), 20)
+        # # indices_min_y = tf.fill(tf.shape(indices_min_x), 5)
+        # # indices_max_y = tf.fill(tf.shape(indices_min_x), 20)
 
-        # indices_min_y = tf.fill(tf.shape(indices_min_x), 5)
-        # indices_max_y = tf.fill(tf.shape(indices_min_x), 20)
+        # masks_target = self.zero_out_regions(masked_image, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
 
+        # #print(masks_target.shape)
+        # masks_target = Reshape((2304,))(masks_target)
 
-        # indices_min_x = tf.constant(20, shape=(400,))
-        # indices_max_x = tf.constant(30, shape=(400,))
+        # # y_mask <=> predictions
+        # self.MaskLoss = mean_absolute_error(masks_target, y_mask)
 
-        # indices_min_y = tf.constant(20, shape=(400,))
-        # indices_max_y = tf.constant(30, shape=(400,))
+        # def theloss(*args):
+        #     return self.MaskLoss
 
+        # self.theloss = theloss
+        #####################################################################################
+        ######################## END INPUTS for the MASKER MODEL ############################
+        #####################################################################################
 
-        masks_target = self.zero_out_regions(masked_image, indices_min_x, indices_max_x, indices_min_y, indices_max_y)
-
-        #print(masks_target.shape)
-        masks_target = Reshape((2304,))(masks_target)
-
-        # y_mask <=> predictions
-        self.MaskLoss = mean_absolute_error(masks_target, y_mask)
-
-        def theloss(*args):
-            return self.MaskLoss
-
-        self.theloss = theloss
 
 
         # # Sequential(self.encoder_net)(x)
@@ -2203,6 +2327,7 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
 
 
 
+
         ###########################################################################
         # [ CODE for if one Input ]
         # reshaped_action_layer = tf.squeeze(action_layer, axis=[3])[:, 0, :24]
@@ -2215,9 +2340,18 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         action = action_input
         z_suc_aae = self._apply  (z_pre, action)
         z_pre_aae = self._regress(z_suc, action)
-        y_suc_aae = self._decode(z_suc_aae)
-        y_pre_aae = self._decode(z_pre_aae)
-        z_aae = dmerge(z_pre_aae, z_suc_aae)
+        y_suc_aae = self._decode(z_suc_aae) # 
+
+
+
+        # sinon UN SEUL _decode MAIS qui a 2 outputs (1 "mask", 1 contour)
+        # # xmin, xmax, ymin, ymax
+        #
+        # y_pre_aae 
+        #   
+
+        y_pre_aae = self._decode(z_pre_aae) # 
+        z_aae = dmerge(z_pre_aae, z_suc_aae) # dmerge do from a pair of [B,D,E,F] to [B,2,D,E,F]
         y_aae = dmerge(y_pre_aae, y_suc_aae)
 
         #(l_action,  ), _ = action.variational_source # see Variational class
@@ -2248,10 +2382,42 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         kl_z1z2 = z_pre_aae.loss(l_pre, logit_p=l_pre_aae)
         kl_z0z3 = z_suc_aae.loss(l_suc, logit_p=l_suc_aae)
         _rec = self.output.loss
+        
+
+        # print(self.output) # <latplan.mixins.output.GaussianOutput object at 0x7fbbaa5a3850>
+        # print(self) # <latplan.model.ConvolutionalConcreteDetNormalizedLogitAddBidirectionalTransitionAEPlus object at 0x7fba4bdf2fd0>
+        # print(self.output.loss) # <bound method GaussianOutput.loss of <latplan.mixins.output.GaussianOutput object at 0x7fbbaa5a3850>>
+
+
         x0y0 = _rec(x_pre,y_pre)
         x1y1 = _rec(x_suc,y_suc)
         x0y3 = _rec(x_pre,y_pre_aae)
-        x1y2 = _rec(x_suc,y_suc_aae)
+        x1y2 = _rec(x_suc,y_suc_aae) # x1y2 is the "loss" between next ground truth image and prediction of this image
+
+        # masked_image
+        #print(masked_image.shape) # (?, 48, 48)
+        #print(x_suc.shape) # (?, 48, 48, 1)
+
+        # # 
+        x_suc_sq = tf.squeeze(x_suc)
+        y_suc_aae_qs = tf.squeeze(y_suc_aae)
+
+        #   outside_masks = tf.expand_dims(outside_masks, 0)
+        print("laok")
+        # print(inside_masks.shape)
+        # print(outside_masks.shape)
+
+        negative_masks = lambda_toFloat32(negative_masks)
+
+        #mask_negative_of_rectangle
+        x1y2_in = _rec(x_suc_sq*masks, y_suc_aae_qs*masks)
+        x1y2_out = _rec(x_suc_sq*negative_masks,y_suc_aae_qs*negative_masks)
+
+        x_pre_sq = tf.squeeze(x_pre)
+        y_pre_aae_sq = tf.squeeze(y_pre_aae)
+        x0y3_in = _rec(x_pre_sq*masks, y_pre_aae_sq*masks)
+        x0y3_out = _rec(x_pre_sq*negative_masks, y_pre_aae_sq*negative_masks)
+        #inside_maskssssss = Lambda(lambda x: x, name = "Lambda_1")(inside_masks)
 
         self.parameters["beta_a_recons"] = 1
         
@@ -2265,11 +2431,11 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
 
         #total_loss = 10000 * (pdiff_z1z2 + pdiff_z0z3)
 
-
         ama3_forward_elbo1  = kl_z0 + x0y0 + kl_a_z0 + kl_z1z2 + x1y1
-        ama3_forward_elbo2  = kl_z0 + x0y0 + kl_a_z0 + x1y2
+        #ama3_forward_elbo2  = kl_z0 + x0y0 + kl_a_z0 + x1y2
+        ama3_forward_elbo2  = kl_z0 + x0y0 + kl_a_z0 + x1y2_in*0.9 + x1y2_out*0.1
         ama3_backward_elbo1 = kl_z1 + x1y1 + kl_a_z1 + kl_z0z3 + x0y0
-        ama3_backward_elbo2 = kl_z1 + x1y1 + kl_a_z1 + x0y3
+        ama3_backward_elbo2 = kl_z1 + x1y1 + kl_a_z1 + x0y3_in*0.9 + x0y3_out*0.1
         elbo = (ama3_forward_elbo1 + ama3_forward_elbo2 + ama3_backward_elbo1 + ama3_backward_elbo2)/4
 
         self.add_metric("pdiff_z1z2",pdiff_z1z2)
@@ -2285,7 +2451,10 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         self.add_metric("x0y0",x0y0)
         self.add_metric("x1y1",x1y1)
         self.add_metric("x0y3",x0y3)
-        self.add_metric("x1y2",x1y2)
+        self.add_metric("x0y3_in",x0y3_in)
+        self.add_metric("x0y3_out",x0y3_out)
+        self.add_metric("x1y2_in",x1y2_in)
+        self.add_metric("x1y2_out",x1y2_out)
         self.add_metric("elbo",elbo)
 
         def loss(*args):
@@ -2295,11 +2464,13 @@ class BaseActionMixinAMA4Plus(BidirectionalMixin, BaseActionMixin):
         # note: original z does not work because Model.save only saves the weights that are included in the computation graph between input and output.
         #
         #self.net = Model(x, y_aae)
-        self.net = Model(inputs=[x, action_input], outputs=y_aae)
+        # AJOUTE ça à l'output outside_masks, inside_masks, pour vérifier
+        self.net = Model(inputs=[x, action_input, masks], outputs=y_aae)
+        #self.net = Model(inputs=[x, action_input, masks], outputs=[masked_negative, y_aae])
        
         # AE takes as input x, and the action_input as well
         # BUT outputs y_mask
-        self.masker = Model(inputs=[x, action_input], outputs=y_mask)
+        #self.masker = Model(inputs=[x, action_input], outputs=y_mask)
 
         self.encoder     = Model(x, z) # note : directly through the encoder, not AAE
         self.autoencoder = Model(x, y) # note : directly through the decoder, not AAE

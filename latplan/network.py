@@ -12,6 +12,34 @@ from .util.layers    import LinearSchedule
 import os.path
 import random
 
+import latplan.sets
+
+
+
+# Custom callback to freeze/unfreeze weights
+class DynamicFreezeCallback(Callback):
+    def __init__(self, layer_index, weight_indices):
+        super(DynamicFreezeCallback, self).__init__()
+        self.layer_index = layer_index
+        self.weight_indices = weight_indices
+
+    def on_batch_end(self, batch, logs=None):
+        # Example logic to choose weights to freeze/unfreeze
+        # This can be modified as per your requirement
+
+        print("batch is {}".format(str(batch)))
+
+
+        # weights = self.model.layers[self.layer_index].get_weights()
+        # new_weights = np.array(weights)
+        
+        # # Example: Toggle the trainable status of specified weights
+        # for idx in self.weight_indices:
+        #     new_weights[idx] = np.zeros_like(weights[idx])
+        
+        # self.model.layers[self.layer_index].set_weights(new_weights)
+
+
 # modified version
 import progressbar
 class DynamicMessage(progressbar.DynamicMessage):
@@ -48,6 +76,13 @@ This dict can be used while building the network, making it easier to perform a 
         self.metrics = []
         self.nets    = [None]
         self.losses  = [None]
+        self.parameters["present_xys"] = "lolilol"
+
+
+        g = tf.get_default_graph()
+        with tf.Session(graph=g).as_default() as sess:
+            self.output_mask = None
+ 
         if parameters:
             # handle the test-time where parameters is not given
             self.path = os.path.join(path,"logs",self.parameters["time_start"])
@@ -143,9 +178,9 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 
     def compile(self,*args,**kwargs):
         """An interface for compiling a network."""
-        if self.compiled:
-            # print("Avoided compiling {} twice.".format(self))
-            return
+        # if self.compiled:
+        #     # print("Avoided compiling {} twice.".format(self))
+        #     return
         print("Compiling networks")
         self._compile(*args,**kwargs)
         self.compiled = True
@@ -162,10 +197,10 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         assert len(self.nets) == len(optimizers)
         assert len(self.nets) == len(self.losses)
         for net, o, loss in zip(self.nets, optimizers, self.losses):
-            print(self.theloss)
+            #print(self.theloss)
             print(f"compiling {net} with {o}, {loss}.")
             net.compile(optimizer=o, loss=loss, metrics=self.metrics)
-            self.masker.compile(optimizer=keras.optimizers.Adam(lr=1e-3), loss=self.theloss)
+            #self.masker.compile(optimizer=keras.optimizers.Adam(lr=1e-3), loss=self.theloss)
         return
 
     def local(self,path=""):
@@ -173,30 +208,42 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 into a full path."""
         return os.path.join(self.path,path)
 
-    def save(self,path=""):
+
+    def _save(self, path="", epoch=None):
+        """An interface for saving a network.
+Users may define a method for each subclass for adding a new save-time feature.
+Each method should call the _save() method of the superclass in turn.
+Users are not expected to call this method directly. Call save() instead.
+Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around methods."""
+
+
+        for i, net in enumerate(self.nets):
+            net.save_weights(self.local(os.path.join(path,f"net{i}-"+str(epoch)+".h5")))
+
+        with open(self.local(os.path.join(path,"aux.json")), "w") as f:
+            json.dump({"parameters":self.parameters,
+                       "class"     :self.__class__.__name__,
+                       "input_shape":self.net.input_shape[1:]}, f , skipkeys=True, cls=NpEncoder, indent=2)
+
+
+
+    def save(self,path="", epoch=None):
+       
+        
         """An interface for saving a network.
 Users should not overload this method; Define _save() for each subclass instead.
 This function calls _save bottom-up from the least specialized class.
 Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around methods."""
         print("Saving the network to {}".format(self.local(path)))
         os.makedirs(self.local(path),exist_ok=True)
-        self._save(path)
+
+        self._save(path=path, epoch=epoch)
         print("Network saved")
         return self
 
-    def _save(self,path=""):
-        """An interface for saving a network.
-Users may define a method for each subclass for adding a new save-time feature.
-Each method should call the _save() method of the superclass in turn.
-Users are not expected to call this method directly. Call save() instead.
-Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around methods."""
-        for i, net in enumerate(self.nets):
-            net.save_weights(self.local(os.path.join(path,f"net{i}.h5")))
 
-        with open(self.local(os.path.join(path,"aux.json")), "w") as f:
-            json.dump({"parameters":self.parameters,
-                       "class"     :self.__class__.__name__,
-                       "input_shape":self.net.input_shape[1:]}, f , skipkeys=True, cls=NpEncoder, indent=2)
+
+
 
     def save_epoch(self, freq=10, path=""):
         def fn(epoch, logs):
@@ -347,6 +394,16 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
     # self.metrics.append(thunk)
 
 
+    
+    def plot_image(self,a,name):
+        import matplotlib.pyplot as plt
+        plt.figure(figsize=(6,6))
+        plt.imshow(a,interpolation='nearest',cmap='gray',)
+        plt.savefig(name)
+
+
+
+
     def train(self,train_data,
               val_data      = None,
               train_data_to = None,
@@ -358,6 +415,10 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 
         import wandb
 
+        print("okokkikl")
+        latplan.sets
+        print(latplan.sets.myList)
+        #exit()
 
         if resume:
             print("resuming the training")
@@ -378,8 +439,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             self.build(input_shape)
             self.build_aux(input_shape)
 
-
-
+        
         SAE_layers = [
 
             "batch_normalization_2"
@@ -442,6 +502,17 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         self.compile(self.optimizers)
 
 
+        print()
+        print()
+
+        for layer in self.nets[0].layers:
+            print(layer.name)
+            if layer.name == "conv2d_transpose_2":
+                print(layer.trainable_weights)
+
+        #trainable_weights
+        #exit()
+
         # if self.parameters["do_sweep"]:
 
         #     # define a metric we are interested in the maximum of
@@ -501,6 +572,9 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         #                 epoch=epoch),
         #         on_train_end = lambda _: self.file_writer.close()))
 
+        #self.callbacks.append(DynamicFreezeCallback(layer_index=1, weight_indices=self.parameters["x_and_ys"]))
+
+
         def assert_length(data):
             l = None
             for subdata in data:
@@ -529,6 +603,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         print(len(train_data)) # 900
         print(len(train_data[0])) # 2
         index_array = np.arange(len(train_data))
+        print("index_array") # [   0    1    2 ... 8637 8638 8639]
+        print(index_array)
 
         clist = CallbackList(callbacks=self.callbacks)
         clist.set_model(self.nets[0])
@@ -559,6 +635,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 images_array.append(d[0])
 
             images_array = np.array(images_array)
+
+
             actions_array = []
 
             for d in data:
@@ -569,6 +647,11 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 actions_array.append(d[1])
 
             actions_array = np.array(actions_array)
+
+            masks_array = []
+            for d in data:
+                masks_array.append(d[2])
+            masks_array = np.array(masks_array)
 
             # [ CODE for if one Input ]
             # actions_np_arr = np.expand_dims(actions_np_arr, axis=-1)
@@ -596,22 +679,35 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
             # attend (3, 48, 48, 1)
 
             # NEW VERSION
-            # evals = self.nets[0].evaluate([images_array, actions_array],
-            #                         images_array,
-            #                         batch_size=batch_size,
-            #                         verbose=0)
-            evals = self.masker.evaluate([images_array, actions_array],
+            evals = self.nets[0].evaluate([images_array, actions_array, masks_array],
                                     images_array,
                                     batch_size=batch_size,
                                     verbose=0)
+            # evals = self.masker.evaluate([images_array, actions_array],
+            #                         images_array,
+            #                         batch_size=batch_size,
+            #                         verbose=0)
 
-            #
-            preds = self.masker.predict([images_array, actions_array])
-            print("PREDS")
-            print(preds.shape)
-            if epoch == 2:
-                plot_image(np.reshape(preds[0], (48,48)),"THEPREDICTION.png")
-                exit()
+            # #
+            preds = self.nets[0].predict([images_array, actions_array, masks_array])
+            print("PREDS") # (600, 2, 48, 48, 1)
+            
+
+            # self.plot_image(images_array[0][0],"exPRE.png")
+            # self.plot_image(images_array[0][1],"exSUC.png")
+
+            # self.plot_image(preds[0],"exDIFFF.png")
+
+            # print(preds[1].shape) # (480, 2, 48, 48, 1)
+            # print(preds[0].shape) 
+            #exit()
+            #return
+
+            if epoch % 3 and epoch > 0:
+                iiii = random.randint(0, 479)
+                plot_image(np.reshape(preds[iiii,1,:,:,:].squeeze(), (48,48)),"THEPREDICTION.png")
+                
+
             # # CLASSIC VERSION
             # evals = self.nets[0].evaluate(images_array,
             #                 images_array,
@@ -656,6 +752,8 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
         #     logs["loss"] = np.sum(losses)
         #     return logs
         
+
+
         try:
             clist.on_train_begin()
             logs = {}
@@ -666,7 +764,7 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
 
             # for each epoch
             for epoch in range(start_epoch,start_epoch+epoch):
-                np.random.shuffle(index_array)
+                #np.random.shuffle(index_array)
                 indices_cache       = [ indices for indices in make_batch(index_array) ]
 
                 # train_data_cache    = [[ train_subdata   [indices] for train_subdata    in train_data    ] for indices in indices_cache ]
@@ -684,9 +782,11 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 for train_subdata_cache, train_subdata_to_cache in zip(train_data_cache,train_data_to_cache):
                     #for net,train_subdata_batch_cache,train_subdata_to_batch_cache in zip(self.nets, train_subdata_cache,train_subdata_to_cache):
 
-
-
+                    #freeze_callback = DynamicFreezeCallback(layer_index=1, weight_indices=[0]) # Example indices
+                    
                     net = self.nets[0]
+
+                    #self.parameters["present_xys"] = self.parameters["x_and_ys"][batch_count]
 
                     # print("SHAPE SUBDATA")
                     # print(len(train_subdata_cache))
@@ -705,6 +805,9 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                         action_input_data.append(item[1])
 
                     action_input_data = np.array(action_input_data)
+
+
+                    masks = np.array([item[2] for item in train_subdata_cache])
                     
                     # print(action_input_data.shape) # (400, 2)
                     #print("x_data.shape")
@@ -727,29 +830,46 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                     # (010) (010)
                     
 
-                    self.masker.train_on_batch([x_data, action_input_data], x_data)
+                    #self.masker.train_on_batch([x_data, action_input_data], x_data)
                     #continue
 
                     # if batch_count==1:
                     #     preds = self.masker.predict([x_data, action_input_data])
                     #     print("PREDS")
                     #     print(preds.shape)
-                    #plot_image(preds,"THEPREDICTION.png")
+                    #     plot_image(x_data[],"THEPREDICTION.png")
+
+                    # print("jjjjj")
+                    # print(x_data.shape) # (400, 2, 48, 48, 1)
+                    # print(action_input_data.shape) # (400, 24)
+
+                    # for lil in range(0, 399, 50):
+                    #     plot_image(x_data[lil][0].squeeze(), "data"+str(lil)+"Pre.png") # pre
+                    #     plot_image(x_data[lil][1].squeeze(), "data"+str(lil)+"Suc.png") # post
+                    #     print("action is : {}".format(str(np.argmax(action_input_data[lil]))))
+                        
                     # action_input_data must be like (400, 24)
-                    #net.train_on_batch([x_data, action_input_data], x_data) # NEW VERSION
+                    #net.train_on_batch([x_data, action_input_data, masks], [masks, x_data]) # NEW VERSION
+                    net.train_on_batch([x_data, action_input_data, masks], x_data) # NEW VERSION
                     #net.train_on_batch(x_data, x_data) # CLASSIC VERSION OF LATPLAN
-                    
-                    
+
+                    #print(self.output_mask[0].eval(session=latplan.sets.myList[0]))
+
+                    # p1 = tf.placeholder(tf.float32)
+                    # g = tf.get_default_graph()
+                    # with tf.Session(graph=g).as_default() as sess:
+                    #     #self.output_mask = None
+                    #     print(self.output_mask)
+                    #     print(self.output_mask(action_input_data).eval(session=sess))
+
                     # logs = {}
                     # for k,v in generate_logs(train_data, train_data_to).items():
                     #     logs["t_"+k] = v
                     # for k,v in generate_logs(val_data,  val_data_to).items():
                     #     logs["v_"+k] = v
-                    # clist.on_batch_end(batch_count,logs)
+                    #clist.on_batch_end(batch_count,logs)
 
                     batch_count+=1
-
-                
 
                 logs = {}
                 # # CLASSIC VERSION
@@ -762,16 +882,16 @@ Poor python coders cannot enjoy the cleanness of CLOS :before, :after, :around m
                 if self.nets[0].stop_training:
                     break
 
-                # if epoch > 0 and epoch%100:
-                #     self.save()
+                if epoch > 0 and epoch % 500 == 0:
+                    self.save(epoch=epoch)
 
-            #wandb.finish()
+            wandb.finish()
             clist.on_train_end()
 
         except KeyboardInterrupt:
             print("learning stopped\n")
         finally:
-            #self.save()
+            self.save(epoch=epoch)
             self.loaded = True
         return self
 

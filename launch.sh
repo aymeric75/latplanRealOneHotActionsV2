@@ -77,7 +77,7 @@
 #################
 ## PUZZLE MNIST
 
-exec 1>24ActionsLearnsMask.out 2>24ActionsLearnsMask.err
+exec 1>24ActionsTwoLossForx1y2-500samples-peraction-BIS.out 2>24ActionsTwoLossForx1y2-500samples-peraction-BIS.err
 
 
 task="puzzle"
@@ -94,7 +94,7 @@ after_sample="puzzle_mnist_3_3_5000_CubeSpaceAE_AMA4Conv_kltune2"
 pb_subdir="puzzle-mnist-3-3"
 
 #conf_folder="8-mnist-one-action"
-conf_folder="24ActionsLearnsMask"
+conf_folder="24ActionsTwoLossForx1y2-500samples-peraction-BIS"
 
 
 #############################################

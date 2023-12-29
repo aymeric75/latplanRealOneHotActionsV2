@@ -235,10 +235,45 @@ def dump_code_unused():
                           lambda idx: all_states[idx.flatten()].reshape((len(idx),2,num_objs,-1)).transpose((1,0,2,3)))
 
 
-def train_val_test_split(x):
-    train = x[:int(len(x)*0.9)]
-    val   = x[int(len(x)*0.9):int(len(x)*0.95)]
-    test  = x[int(len(x)*0.95):]
+def train_val_test_split(x, each_batch_is_special=False, size_batch=None, number_of_batches=None):
+
+    # size_batch = 500
+    # 
+    # total_size = 1500
+    # 
+    # 
+    # 
+    # number_of_batches = 3
+    # 
+    # 
+    # 
+    # b is 0 1 2
+    # 
+    #
+    #  0*500: 1*500    0:500
+    #  1*500: 2*500    500:1000
+    #  2*500: 3*500    1000:1500
+
+    if each_batch_is_special:
+        train = []
+        val = []
+        test = []
+        for b in range(number_of_batches):
+            batch_content = x[b*size_batch:(b+1)*size_batch]
+
+            tr = batch_content[: int(len(batch_content)*0.9)]
+            vl   = batch_content[  int(len(batch_content)*0.9):  int(len(batch_content)*0.95)]
+            tst  = batch_content[  int(len(batch_content)*0.95):]
+
+            train.extend(tr)
+            val.extend(vl)
+            test.extend(tst)
+
+    else:
+        train = x[:int(len(x)*0.9)]
+        val   = x[int(len(x)*0.9):int(len(x)*0.95)]
+        test  = x[int(len(x)*0.95):]
+
     return train, val, test
 
 
@@ -279,7 +314,8 @@ def run(path,transitions,extra=None):
     # print("picsize0")
     # print(parameters["picsize"])
 
-    train_for_report, val_for_report, test_for_report = train_val_test_split(transitions)
+    #train_for_report, val_for_report, test_for_report = train_val_test_split(transitions)
+
 
     print("thetassssk")
     print(thetask.__name__)
@@ -294,7 +330,7 @@ def run(path,transitions,extra=None):
     if thetask.__name__ == "puzzle":
         print("IN MNISTT")
         from genMnist import return_transitions_one_hot
-        transitions, actions_transitions = return_transitions_one_hot(augmented=False, custom=True)
+        transitions, actions_transitions, masks = return_transitions_one_hot(augmented=False, custom=True, masked=None, shuffle_dataset=True)
     
     elif thetask.__name__ == "hanoi":
         print("lil")
@@ -329,24 +365,12 @@ def run(path,transitions,extra=None):
 
 
 
-    for hh in range(10, 14):
 
 
-        print("acccc")
-        print(actions_transitions[hh])
-        print(np.where(actions_transitions[hh] == 1))
-        #plt.imshow(transitions[10][0],interpolation='nearest',cmap='gray',)
-        plt.imshow(transitions[hh][0])
-        plt.savefig("HANOIPRE"+str(hh)+".png")
+    print("typetr1")
+    print(type(transitions))
+    print(transitions.shape)
 
-        plt.imshow(transitions[hh][1])
-        plt.savefig("HANOISUCC"+str(hh)+".png")
-
-
-    # print("typetr1")
-    # print(type(transitions))
-    # print(transitions.shape)
-    # exit()
 
 
     #transitions, actions_transitions
@@ -375,9 +399,10 @@ def run(path,transitions,extra=None):
     #        1 x 4 + 4 x 3 + 4 x 2 = 24 moves SO the one-hot vector must be of size 24 !!!!!
 
 
-    all_transitions_with_actions = [[transitions[i], actions_transitions[i]] for i in range(len(transitions))]
+    #all_transitions_with_actions = [[transitions[i], actions_transitions[i]] for i in range(len(transitions))]
 
-
+    # x_and_ys
+    all_transitions_with_actions_and_mask_coords = [[transitions[i], actions_transitions[i], masks[i]] for i in range(len(transitions))]
     # 
     #   
     #
@@ -399,8 +424,30 @@ def run(path,transitions,extra=None):
     #all_transitions_with_actions = transitions
 
 
-    train, val, test = train_val_test_split(all_transitions_with_actions)
+    #train, val, test = train_val_test_split(all_transitions_with_actions)
 
+
+
+    # train, val, test = train_val_test_split(all_transitions_with_actions, 
+    #     each_batch_is_special=True, 
+    #     size_batch=400, 
+    #     number_of_batches=50
+    # )
+
+
+    train, val, test = train_val_test_split(all_transitions_with_actions_and_mask_coords, 
+        each_batch_is_special=True, 
+        size_batch=400, 
+        number_of_batches=50
+    )
+
+
+    # for hh in range(0, 8640, 360):
+
+    #     plt.imshow(train[hh][0][0])
+    #     plt.savefig("PUZZ"+str(hh)+"PRE.png")
+    #     plt.imshow(train[hh][0][1])
+    #     plt.savefig("PUZZ"+str(hh)+"SUCC.png")
 
 
     def postprocess(ae):
@@ -597,9 +644,10 @@ def run(path,transitions,extra=None):
           
         }
         
+
         # wandb.login(key="2eec5f6bab880cdbda5c825881bbd45b4b3819d9")
 
-        # with wandb.init(project="my-Latplan", group="Singleruns", name="8-mnist-one-action-really-all-examples-Beta_a10k-RE", resume=False):
+        # with wandb.init(project="my-Latplan", group="Singleruns", name="24ActionsTwoLossForx1y2-500samples-peraction-BIS-BIS", resume=False):
             
         #     parameters["load_sae_weights"] = False
         #     parameters["do_sweep"] = False
@@ -607,15 +655,18 @@ def run(path,transitions,extra=None):
         #     # parameters["beta_d"] = 1000
         #     #parameters["beta_a_recons"] = 10
         #     # parameters["beta_z"] = 10
-        #     parameters["epoch"] = 2000
         #     # parameters["aae_width"] = 100
         #     # parameters["dropout"] = 0
         #     parameters["use_wandb"] = True
             
-        #     parameters["beta_a_recons"] = 10000
+        #     parameters["beta_a_recons"] = 1
 
         #     config = wandb.config
-        parameters["epoch"] = 2000
+        parameters["epoch"] = 3000
+
+        # if x_and_ys:
+        #     parameters["x_and_ys"] = x_and_ys
+
         path = path_to_json
         task = curry(nn_task, latplan.model.get(parameters["aeclass"]), path, train, train, val, val, parameters, False) 
         task()
@@ -757,10 +808,10 @@ def run(path,transitions,extra=None):
         #
 
 
-        # images = np.expand_dims(test[theindex][0].astype(np.float32), axis=0)
-        # #images = test[4][0].astype(np.float32)
-        # action = np.expand_dims(test[theindex][1].astype(np.float32), axis=0)
-        # #actions = test[4][1].astype(np.float32)
+        images = np.expand_dims(test[theindex][0].astype(np.float32), axis=0)
+        #images = test[4][0].astype(np.float32)
+        action = np.expand_dims(test[theindex][1].astype(np.float32), axis=0)
+        #actions = test[4][1].astype(np.float32)
         # print(images.shape)
         # print(action.shape)
         # print("theAction")
@@ -775,8 +826,10 @@ def run(path,transitions,extra=None):
         # next_image = net.net([images, actions])
         print(type(next_image))
         print(next_image.shape)
+        plot_image(np.squeeze(next_image)[0],"ImBEFOREPredicted9999")
         plot_image(np.squeeze(next_image)[1],"ImAfterPredicted9999")
         plot_image(np.squeeze(images)[1],"ImAfterGroundTruth9999")
+        plot_image(np.squeeze(images)[0],"ImBEFOREGroundTruth9999")
         exit()
 
     if 'inspect_latent' in args.mode:

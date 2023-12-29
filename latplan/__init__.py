@@ -24,8 +24,13 @@ import keras.backend.tensorflow_backend as K
 # K.set_floatx('float16')
 print("Default float: {}".format(K.floatx()))
 
-K.set_session(
-    tf.compat.v1.Session(
+import latplan.sets
+
+latplan.sets.init()
+
+global thesession
+
+thesession =  tf.compat.v1.Session(
         config=tf.compat.v1.ConfigProto(
             allow_soft_placement=True,
             intra_op_parallelism_threads=1,
@@ -34,7 +39,13 @@ K.set_session(
             gpu_options =
             tf.compat.v1.GPUOptions(
                 per_process_gpu_memory_fraction=1.0,
-                allow_growth=True,))))
+                allow_growth=True,)))
+
+sets.myList.append(thesession)
+
+K.set_session(
+    thesession
+                )
 
 from keras_radam      import RAdam
 import keras.optimizers
